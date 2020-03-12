@@ -5,6 +5,19 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-theme-ui`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "graphCMS",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "graphCMS",
+        // Url to query from
+        url: "https://api-uswest.graphcms.com/v1/ck7jxsnuc4wx601ea1hwkcfhs/master",
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -13,8 +26,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
