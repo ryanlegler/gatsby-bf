@@ -22,6 +22,13 @@ exports.createPages = ({ graphql, actions }) => {
   // Variables can be added as the second function parameter
   return graphql(`
   {
+    allContentfulCategory {
+      edges {
+        node {
+          name
+        }
+      }
+    },
     contentfulCategory {
       name
       projects {
@@ -47,30 +54,30 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
+
+    const {contentfulCategory, allContentfulCategory} = result.data;
+    const {edges:categories} = allContentfulCategory;
     
-    const {contentfulCategory} = result.data;
-    
-    console.log('contentfulCategory',contentfulCategory);
     // // Create blog post pages.
     categories.forEach(category => {
     
       createPage({
-        path: `${slug(category.name)}`,
+        path: `${slug(category.node.name)}`,
         component: categoryPage,
         context: {
             contentfulCategory,
-            category,
+            category: category.node,
             id: category.id
         },
       })
       category && category.projects.forEach(project => {
         createPage({
-          path: `${slug(category.name)}/${slug(project.title)}`,
+          path: `${slug(category.node.name)}/${slug(project.title)}`,
           component: projectPage,
           context: {
               id: project.id,
               contentfulCategory,
-              category,
+              category: category.node,
               project
           },
         })

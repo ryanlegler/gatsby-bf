@@ -10,7 +10,7 @@ const Category = (props) => {
   const { location, pageContext } = props;
   const { categories, contentfulCategory } = pageContext;
   const { projects, name } = contentfulCategory || {}
-  
+  console.log('contentfulCategory',contentfulCategory);
   return (
     <div>
       <Header items={categories} />
