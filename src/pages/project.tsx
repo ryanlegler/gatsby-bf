@@ -29,10 +29,12 @@ import Header from "../components/header";
 // `
 
 const Project = (props) => {
-
-    const { categories, category, project } = props.pageContext;
-    const { projects, name } = category
+    console.log('props',props);
+    const { categories, contentfulCategory, project } = props.pageContext;
+    const { projects, name } = contentfulCategory
     const { images, title } = project;
+
+    console.log('images',images);
 
 
 

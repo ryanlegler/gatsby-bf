@@ -4,7 +4,6 @@ import { jsx } from "theme-ui"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled";
 import Header from "../components/header"
-import offline from "../offline/data";
 import { Flex } from "jank-ui";
 
 
@@ -12,21 +11,22 @@ import Carousel from 'nuka-carousel';
 
 export const query = graphql`
 {
-  graphCMS {
-    home(where: {id: "ck7n0urb5imm20998sswsxgxp"}) {
-      images {
-        url
+  allContentfulCategory {
+    edges {
+      node {
+        name
       }
     }
-    categories {
-      name
-      projects {
-        title
+  },
+  allContentfulHome {
+    edges {
+      node {
+        id
         images {
-          url
-        }
-        thumbnail {
-          url
+          id
+          file {
+            url
+          }
         }
       }
     }
@@ -38,16 +38,19 @@ const StyledButton = styled("button") <any>`
 `
 
 const IndexPage = ({ data }) => {
-
-  const raw = data || offline;
-  const { categories, home } = raw.graphCMS;
-
-  console.log('home', home);
+  // console.log('data',data);
+  const { allContentfulCategory, allContentfulHome } = data;
+console.log('allContentfulHome',allContentfulHome);
+  // console.log('home', home);
+  const {edges:categories} = allContentfulCategory;
+  const {edges:images} = allContentfulHome;
+  console.log('edges',);
+  console.log('images',images);
   return (
     <div style={{ height: '100vh', background: '#bada55' }}>
       <Header items={categories} />
       <Carousel wrapAround>
-        {home.images.map((image, index) => <div key={index} style={{ flex: '0 0 100%' }} ><img style={{ objectFit: "cover", width: "100%", height: '80vh' }} src={image.url} /></div>)}
+        {images[0].node.images.map((image, index) => <div key={index} style={{ flex: '0 0 100%' }} ><img style={{ objectFit: "cover", width: "100%", height: '80vh' }} src={image.file.url} /></div>)}
       </Carousel>
     </div>
 

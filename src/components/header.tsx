@@ -23,14 +23,14 @@ const Header = ({ items }) => (
         items.map(item => (
           
             <Link
-              key={item.name}
-              to={`/${item.name}`}
+              key={item.node.name}
+              to={`/${item.node.name}`}
               style={{
                 color: `white`,
                 textDecoration: `none`,
               }}
             >
-              {slug(item.name)}
+              {slug(item.node.name)}
             </Link>
           
         ))}

@@ -9,27 +9,6 @@
 const path = require(`path`);
 const slug = require('slug')
 
-// const offline = path.resolve(`src/offline/data.tsx`)
-
-// exports.createPages = ({ graphql, actions }) => {
-//     const { createPage } = actions
-//     const categoryPage = path.resolve(`src/pages/category.tsx`)
-//     offline.data.graphCMS.categories.forEach(category => {
-    
-//       return createPage({
-//         path: `${category.name}`,
-//         component: categoryPage,
-//         context: {
-//             id: category.id
-//         },
-//       })
-//     })
-// }
-
-
-
-
-
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -43,36 +22,43 @@ exports.createPages = ({ graphql, actions }) => {
   // Variables can be added as the second function parameter
   return graphql(`
   {
-    graphCMS {
-      categories {
+    contentfulCategory {
+      name
+      projects {
         name
-        id
-        projects {
+        thumbnail {
           title
-          thumbnail {
+          description
+          file {
             url
           }
-          images {
+        }
+        images {
+          title
+          file {
             url
           }
         }
       }
-    }
+    },
+
   }
   `, { limit: 1000 }).then(result => {
     if (result.errors) {
       throw result.errors
     }
-
-    const {categories} = result.data.graphCMS;
+    
+    const {contentfulCategory} = result.data;
+    
+    console.log('contentfulCategory',contentfulCategory);
     // // Create blog post pages.
-    result.data.graphCMS.categories.forEach(category => {
+    categories.forEach(category => {
     
       createPage({
         path: `${slug(category.name)}`,
         component: categoryPage,
         context: {
-            categories,
+            contentfulCategory,
             category,
             id: category.id
         },
@@ -83,7 +69,7 @@ exports.createPages = ({ graphql, actions }) => {
           component: projectPage,
           context: {
               id: project.id,
-              categories,
+              contentfulCategory,
               category,
               project
           },
