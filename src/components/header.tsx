@@ -39,7 +39,7 @@ const StyledLink = styled(Link)<any>`
 
 
 
-const Header = ({ items, url }) => (
+const Header = ({ items, url = '' }) => (
   <StyledHeader>
     <Flex vAlignment="middle" hAlignment="between">
 
