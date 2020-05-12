@@ -14,7 +14,7 @@ const Category = (props) => {
 
   return (
     <div>
-      <Header items={categories} url={logo?.file?.url}/>
+      <Header items={categories} url={logo && logo.file && logo.file.url}/>
 
       {name && <h1>{name}</h1>}
       <div>

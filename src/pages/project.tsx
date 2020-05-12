@@ -14,7 +14,7 @@ const Project = (props) => {
     
     return (
         <div>
-            <Header items={categories} url={logo?.file?.url}/>
+            <Header items={categories} url={logo && logo.file && logo.file.url}/>
             <div>
                 <h1>{projectName}</h1>
                 <div>
