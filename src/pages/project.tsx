@@ -10,7 +10,7 @@ import ProjectThumb from "../components/projectThumb";
 
 const Project = (props) => {
     
-    const { categories, project } = props.pageContext;
+    const { categories, project = {} } = props.pageContext;
     const { images = [], name: projectName = '' } = project;
 
     return (
