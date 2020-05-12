@@ -30,15 +30,11 @@ const StyledLink = styled(Link)<any>`
     ${css({
         color: 'medium',
         fontFamily: 'body',
-        '&:hover': {
+        '&:hover, &.active_link': {
           color: 'darkest',
         }
     })}
 `
-
-
-
-
 const Header = ({ items, url = '' }) => (
   <StyledHeader>
     <Flex vAlignment="middle" hAlignment="between">
@@ -62,12 +58,9 @@ const Header = ({ items, url = '' }) => (
           items.map(item => (
             
               <StyledLink
+                activeClassName="active_link"
                 key={item.node.name}
                 to={`/${item.node.name}`}
-                // sx={{
-                //   color: 'medium',
-                //   fontFamily: 'body'
-                // }}
               >
                 {slug(item.node.name)}
               </StyledLink>

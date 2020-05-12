@@ -11,14 +11,19 @@ import { backgroundPosition } from 'styled-system';
 const StyledThumb = styled.div<any>`
   background-position: center center;
   background-size: cover;
+
+  
 `
+
+
+
 
 
 const ProjectThumb = ({ url, title }) => {
 
   return (
     <StyledThumb sx={{
-      size: 8,
+      size: 6,
       backgroundImage: `url(${url})`
     }}>
       {title}
