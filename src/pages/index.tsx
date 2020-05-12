@@ -21,7 +21,12 @@ export const query = graphql`
   allContentfulHome {
     edges {
       node {
-        id
+        id,
+        logo {
+          file {
+            url
+          }
+        },
         images {
           id
           file {
@@ -30,21 +35,22 @@ export const query = graphql`
         }
       }
     }
-  }
+  },
 }
 `
 
 const IndexPage = ({ data }) => {
   const { allContentfulCategory, allContentfulHome } = data;
 
-  
   const {edges:categories} = allContentfulCategory;
-  const {edges:images} = allContentfulHome;
+  const {edges:imagesRoot} = allContentfulHome;
+  const rootNode = imagesRoot[0].node;
+  const {images, logo} = rootNode;
   return (
-    <div style={{ height: '100vh', background: '#bada55' }}>
-      <Header items={categories} />
+    <div style={{ height: '100vh'}}>
+      <Header items={categories} url={logo.file.url}/>
       <Carousel wrapAround>
-        {images[0].node.images.map((image, index) => <div key={index} style={{ flex: '0 0 100%' }} ><img style={{ objectFit: "cover", width: "100%", height: '80vh' }} src={image.file.url} /></div>)}
+        {images.map((image, index) => <div key={index} style={{ flex: '0 0 100%' }} ><img style={{ objectFit: "cover", width: "100%", height: '80vh' }} src={image.file.url} /></div>)}
       </Carousel>
     </div>
   )

@@ -22,6 +22,18 @@ exports.createPages = ({ graphql, actions }) => {
   // Variables can be added as the second function parameter
   return graphql(`
   {
+    allContentfulHome {
+      edges {
+        node {
+          id,
+          logo {
+            file {
+              url
+            }
+          }
+        }
+      }
+    },
     allContentfulCategory {
       edges {
         node {
@@ -51,7 +63,12 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    const {allContentfulCategory} = result.data;
+    const {allContentfulCategory, allContentfulHome} = result.data;
+    
+    const {edges:imagesRoot} = allContentfulHome;
+    const rootNode = imagesRoot[0].node;
+    const {logo} = rootNode;
+
     const {edges:categories} = allContentfulCategory;
     
     // // Create blog post pages.
@@ -63,7 +80,8 @@ exports.createPages = ({ graphql, actions }) => {
         context: {
             category: category.node,
             id: category.node.id,
-            categories
+            categories,
+            logo
         },
       })
       category && category.node.projects.forEach(project => {
@@ -74,7 +92,8 @@ exports.createPages = ({ graphql, actions }) => {
               id: project.id,
               category: category.node,
               project,
-              categories
+              categories,
+              logo
           },
         })
       })

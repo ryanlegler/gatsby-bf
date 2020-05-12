@@ -9,11 +9,16 @@ export default {
     neutral: "#555",
     hard: "#111",
     soft: "#999",
+
+    white: "#ffffff",
+    lightest: "#f9f9f9",
+    light: "#f4f4f4",
+    medium: "#909090",
+    dark: "#505050",
+    darkest: "#070707"
   },
   fonts: {
-    body: "system-ui, sans-serif",
-    heading: "system-ui, sans-serif",
-    monospace: "Menlo, monospace",
+    body: "Helvetica Neue, Helvetica, Arial, sans-serif"
   },
   fontWeights: {
     body: 400,
@@ -24,5 +29,5 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
+  fontSizes: [12, 22],
 }

@@ -6,19 +6,20 @@ import ProjectThumb from "../components/projectThumb";
 const slug = require('slug')
 
 const Category = (props) => {
-  console.log('props',props);
+  
   const { location, pageContext } = props;
-  const { categories, category } = pageContext;
+  const { categories, category, logo } = pageContext;
   const { projects, name } = category || {}
-  console.log('category',category);
+
+
   return (
     <div>
-      <Header items={categories} />
+      <Header items={categories} url={logo.file.url}/>
 
       {name && <h1>{name}</h1>}
       <div>
         { projects && projects.map((item, index) => {
-          console.log('item',item);
+          
             return (
               <Link
                 key={index}
