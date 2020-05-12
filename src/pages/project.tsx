@@ -8,31 +8,10 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Header from "../components/header";
 import ProjectThumb from "../components/projectThumb";
 
-
-// const query2 = graphql`
-//   query($id: ID) {
-//     graphCMS {
-//       categories {
-//         name
-//         id
-//         projects {
-//           title
-//         }
-//       }
-//       project(where: { id: $id }) {
-//         title
-//         images {
-//           url
-//         }
-//       }
-//     }
-//   }
-// `
-
 const Project = (props) => {
     
-    const { categories, category, project } = props.pageContext;
-    const { images, name: projectName = '' } = project;
+    const { categories, project } = props.pageContext;
+    const { images = [], name: projectName = '' } = project;
 
     return (
         <div>
