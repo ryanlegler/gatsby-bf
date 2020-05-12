@@ -62,7 +62,8 @@ exports.createPages = ({ graphql, actions }) => {
         component: categoryPage,
         context: {
             category: category.node,
-            id: category.node.id
+            id: category.node.id,
+            categories
         },
       })
       category && category.node.projects.forEach(project => {

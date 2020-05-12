@@ -37,7 +37,7 @@ export const query = graphql`
 const IndexPage = ({ data }) => {
   const { allContentfulCategory, allContentfulHome } = data;
 
-  console.log('allContentfulCategory',allContentfulCategory);
+  
   const {edges:categories} = allContentfulCategory;
   const {edges:images} = allContentfulHome;
   return (
