@@ -6,6 +6,7 @@ import React from "react";
 import { Flex } from 'jank-ui'
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Header from "../components/header";
+import ProjectThumb from "../components/projectThumb";
 
 
 // const query2 = graphql`
@@ -30,9 +31,9 @@ import Header from "../components/header";
 
 const Project = (props) => {
     console.log('props',props);
-    const { categories, contentfulCategory, project } = props.pageContext;
-    const { projects, name } = contentfulCategory
-    const { images, title } = project;
+    const { categories, category, project } = props.pageContext;
+    // const { projects, name } = category
+    const { images, name: projectName } = project;
 
     console.log('images',images);
 
@@ -43,7 +44,7 @@ const Project = (props) => {
             <Header items={categories} />
 
             <div>
-                <h1>{title}</h1>
+                <h1>{projectName}</h1>
                 <div>
                     {images &&
                         images.map((item, index) => (
@@ -55,14 +56,10 @@ const Project = (props) => {
                                     textDecoration: `none`,
                                 }}
                             >
-                                <Flex vAlignment="evenly" hAlignment="center" style={{
-                                    outline: '1px solid #bada55',
-                                    height: '300px',
-                                    width: '300px',
-                                    color: '#bada55'
-                                }}>
-                                    {item.url}
-                                </Flex>
+                                
+                                    <ProjectThumb url={item && item.file && item.file.url ? item.file.url : ''} title={item.name} />
+                                    
+                                
                             </Link>
                         ))}
                 </div>

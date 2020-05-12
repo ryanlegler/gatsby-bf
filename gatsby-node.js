@@ -25,60 +25,55 @@ exports.createPages = ({ graphql, actions }) => {
     allContentfulCategory {
       edges {
         node {
-          name
-        }
-      }
-    },
-    contentfulCategory {
-      name
-      projects {
-        name
-        thumbnail {
-          title
-          description
-          file {
-            url
-          }
-        }
-        images {
-          title
-          file {
-            url
+          name,
+          projects {
+            name
+            thumbnail {
+              title
+              description
+              file {
+                url
+              }
+            }
+            images {
+              title
+              file {
+                url
+              }
+            }
           }
         }
       }
-    },
-
+    }
   }
   `, { limit: 1000 }).then(result => {
     if (result.errors) {
       throw result.errors
     }
 
-    const {contentfulCategory, allContentfulCategory} = result.data;
+    const {allContentfulCategory} = result.data;
     const {edges:categories} = allContentfulCategory;
     
     // // Create blog post pages.
     categories.forEach(category => {
     
       createPage({
-        path: `${slug(category.node.name)}`,
+        path: `${slug(category.node.name || '')}`,
         component: categoryPage,
         context: {
-            contentfulCategory,
             category: category.node,
-            id: category.id
+            id: category.node.id
         },
       })
-      category && category.projects.forEach(project => {
+      category && category.node.projects.forEach(project => {
         createPage({
-          path: `${slug(category.node.name)}/${slug(project.title)}`,
+          path: `${slug(category.node.name)}/${slug(project.name)}`,
           component: projectPage,
           context: {
               id: project.id,
-              contentfulCategory,
               category: category.node,
-              project
+              project: project,
+              categories
           },
         })
       })

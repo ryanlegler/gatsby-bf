@@ -8,9 +8,9 @@ const slug = require('slug')
 const Category = (props) => {
   console.log('props',props);
   const { location, pageContext } = props;
-  const { categories, contentfulCategory } = pageContext;
-  const { projects, name } = contentfulCategory || {}
-  console.log('contentfulCategory',contentfulCategory);
+  const { categories, category } = pageContext;
+  const { projects, name } = category || {}
+  console.log('category',category);
   return (
     <div>
       <Header items={categories} />
@@ -19,7 +19,6 @@ const Category = (props) => {
       <div>
         { projects && projects.map((item, index) => {
           console.log('item',item);
-
             return (
               <Link
                 key={index}
