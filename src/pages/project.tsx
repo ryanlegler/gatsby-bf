@@ -30,14 +30,9 @@ import ProjectThumb from "../components/projectThumb";
 // `
 
 const Project = (props) => {
-    console.log('props',props);
+    
     const { categories, category, project } = props.pageContext;
-    // const { projects, name } = category
-    const { images, name: projectName } = project;
-
-    console.log('images',images);
-
-
+    const { images, name: projectName = '' } = project;
 
     return (
         <div>

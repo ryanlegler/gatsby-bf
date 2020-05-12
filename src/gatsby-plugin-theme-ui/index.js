@@ -1,6 +1,5 @@
 export default {
   space: [0, 8, 16, 24, 32, 40],
-  fontSizes: [8, 12, 18, 24, 32],
   radii: [0, 10, 20],
   sizes: [0, 1, 10, 20, 25, 100, 200, 300, 500],
   colors: {
