@@ -7,20 +7,16 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Header from "../components/header";
 import RichText from "../components/RichText";
 import Carousel from 'nuka-carousel';
-import { letterSpacing } from 'styled-system';
 import styled from "@emotion/styled";
-
 
 const StyledContainer = styled.div`
   max-width: 1200px;
   width: 100%;
 `
 
-
-
 const Project = (props) => {
     
-    const { categories, project = {}, logo, projects, category } = props.pageContext;
+    const { project = {}, logo, projects, category } = props.pageContext;
     const { images = [], name: projectName = '', description, descriptionLink, descriptionLinkImage } = project;
 
     const currentIndex = projects && projects.findIndex(item => item.slug === project.slug)
@@ -40,13 +36,23 @@ const Project = (props) => {
                 <StyledContainer>
 
                     { images && images.length &&
-                        <Carousel wrapAround>
-                            {images.map((image, index) =>
-                                <div key={index} style={{ flex: '0 0 100%' }} >
-                                    <img style={{ objectFit: "cover", width: "100%", height: '50vh' }} src={image.file.url} />    
-                                </div>
-                            )}
-                        </Carousel>
+
+                        <Box
+                            sx={{
+                                ".slider-control-bottomcenter li": {
+                                    position: "relative",
+                                    top: "32px"
+                                }
+                            }}
+                            >
+                            <Carousel wrapAround>
+                                {images.map((image, index) =>
+                                    <div key={index} style={{ flex: '0 0 100%' }} >
+                                        <img style={{ objectFit: "cover", width: "100%", height: '50vh' }} src={image.file.url} />    
+                                    </div>
+                                )}
+                            </Carousel>
+                        </Box>
                     }
                     
                     <Box sx={{fontSize: "14px", marginTop: "50px"}} >
@@ -58,7 +64,6 @@ const Project = (props) => {
                             <RichText text={description.json} />
                         </Box>
                     }
-
 
                     { descriptionLink && descriptionLinkImage &&
                         <a href={descriptionLink} target="_blank" rel="noopener noreferrer">
