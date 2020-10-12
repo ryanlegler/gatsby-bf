@@ -10,6 +10,26 @@ const path = require(`path`);
 const slug = require('slug')
 
 
+
+
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type Seo {
+//       id: String!
+//       title: String!
+//       description: String!
+//       keywords: String!
+//     }
+//     type ContentfulHome implements Node {
+//       seo: Seo
+//     }
+//   `
+//   createTypes(typeDefs)
+// }
+
+
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const categoryPage = path.resolve(`src/pages/category.tsx`)
@@ -22,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
   // Variables can be added as the second function parameter
   return graphql(`
   {
-    allContentfulHome {
+    allContentfulHomePage {
       edges {
         node {
           id,
@@ -38,8 +58,21 @@ exports.createPages = ({ graphql, actions }) => {
       edges {
         node {
           name,
+          slug,
           projects {
             name
+            slug,
+            description {
+              json
+            }
+            descriptionLink
+            descriptionLinkImage {
+              title
+              description
+              file {
+                url
+              }
+            }
             thumbnail {
               title
               description
@@ -63,19 +96,16 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    const {allContentfulCategory, allContentfulHome} = result.data;
-    
-    const {edges:imagesRoot} = allContentfulHome;
+    const {allContentfulCategory, allContentfulHomePage} = result.data;
+    const {edges:imagesRoot} = allContentfulHomePage;
     const rootNode = imagesRoot[0].node;
     const {logo} = rootNode;
-
     const {edges:categories} = allContentfulCategory;
     
-    // // Create blog post pages.
-    categories.forEach(category => {
     
+    categories.forEach(category => {
       createPage({
-        path: `${slug(category.node.name || '')}`,
+        path: `${slug(category.node.slug || '')}`,
         component: categoryPage,
         context: {
             category: category.node,
@@ -86,12 +116,13 @@ exports.createPages = ({ graphql, actions }) => {
       })
       category && category.node.projects.forEach(project => {
         createPage({
-          path: `${slug(category.node.name)}/${slug(project.name)}`,
+          path: `${slug(category.node.slug)}/${slug(project.slug)}`,
           component: projectPage,
           context: {
               id: project.id,
               category: category.node,
               project,
+              projects: category.node.projects,
               categories,
               logo
           },
