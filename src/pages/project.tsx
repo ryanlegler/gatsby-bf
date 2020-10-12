@@ -23,7 +23,7 @@ const Project = (props) => {
     const { categories, project = {}, logo, projects, category } = props.pageContext;
     const { images = [], name: projectName = '', description, descriptionLink, descriptionLinkImage } = project;
 
-    const currentIndex = projects.findIndex(item => item.slug === project.slug)
+    const currentIndex = projects && projects.findIndex(item => item.slug === project.slug)
     const previousItemIndex = projects && currentIndex > 0 && currentIndex - 1;
     const nextItemIndex = projects && currentIndex < projects.length && currentIndex + 1;
 
