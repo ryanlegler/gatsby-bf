@@ -3,30 +3,40 @@ import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 import Header from "../components/header";
 import ProjectThumb from "../components/projectThumb";
+import styled from "@emotion/styled";
+import { Flex } from "jank-ui";
 const slug = require('slug')
+
+const StyledGrid = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+`
 
 const Category = (props) => {
   
   const { location, pageContext } = props;
   const { categories, category, logo } = pageContext;
-  const { projects, name } = category || {}
+  const { projects } = category || {}
 
 
   return (
-    <div>
+    <Flex direction="vertical">
       <Header items={categories} url={logo && logo.file && logo.file.url}/>
-
-      {name && <h1>{name}</h1>}
-      <div>
+      <Flex hAlignment="center">
+      <StyledGrid>
         { projects && projects.map((item, index) => {
           
             return (
               <Link
                 key={index}
-                to={`${location.pathname}/${slug(item.name)}`}
+                to={`${location.pathname}/${slug(item.slug)}`}
                 style={{
                   color: `white`,
                   textDecoration: `none`,
+                  position: `relative`
                 }}
               >
               
@@ -36,8 +46,9 @@ const Category = (props) => {
             )
           }
         )}
-      </div>
-    </div>
+      </StyledGrid>
+      </Flex>
+    </Flex>
   )
 }
 
