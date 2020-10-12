@@ -30,9 +30,12 @@
     "theme-ui": "^0.3.1"
   },
   "devDependencies": {
+    "@contentful/rich-text-react-renderer": "^14.1.1",
+    "@contentful/rich-text-types": "^14.1.1",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/theme-ui": "^0.3.7",
     "prettier": "^1.19.1"
   },
   "keywords": [
