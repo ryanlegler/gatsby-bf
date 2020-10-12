@@ -17,10 +17,15 @@ const StyledLogo = styled.div<any>`
   text-indent: -99999px;
   font-size: .01;
   flex: 0 0 auto;
+
 `
 
 const StyledHeader = styled.header<any>`
-    max-width: 100%;
+    max-width: 1200px;
+    flex: 1 1 auto
+    ;
+    height: 100px;
+    margin-top: 20px;
     ${css({
         p: 2,
     })}
@@ -36,6 +41,7 @@ const StyledLink = styled(Link)<any>`
     })}
 `
 const Header = ({ items, url = '' }) => (
+  <Flex  hAlignment="center">
   <StyledHeader>
     <Flex vAlignment="middle" hAlignment="between">
 
@@ -70,6 +76,7 @@ const Header = ({ items, url = '' }) => (
       </Flex>
     </Flex>
   </StyledHeader>
+  </Flex>
 )
 
 export default Header
