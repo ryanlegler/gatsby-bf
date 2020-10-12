@@ -24,7 +24,7 @@ const Category = (props) => {
 
   return (
     <Flex direction="vertical">
-      <Header items={categories} url={logo && logo.file && logo.file.url}/>
+      <Header url={logo && logo.file && logo.file.url}/>
       <Flex hAlignment="center">
       <StyledGrid>
         { projects && projects.map((item, index) => {

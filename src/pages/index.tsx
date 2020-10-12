@@ -9,6 +9,7 @@ import { Flex } from "jank-ui";
 
 import Carousel from 'nuka-carousel';
 
+
 export const query = graphql`
 {
   allContentfulCategory {
@@ -59,7 +60,7 @@ const IndexPage = ({ data }) => {
       //   top: "32px"
       // }
     }}>
-      <Header items={categories} url={logo.file.url}/>
+      <Header url={logo.file.url}/>
       <Carousel wrapAround>
         {images.map((image, index) => <div key={index} style={{ flex: '0 0 100%' }} ><img style={{ objectFit: "cover", width: "100%", height: '80vh' }} src={image.file.url} /></div>)}
       </Carousel>

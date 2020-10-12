@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from "react"
 import { jsx } from "theme-ui"
-import { Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "@emotion/styled";
 import { Flex } from 'jank-ui'
 import { fontFamily } from "styled-system";
@@ -27,56 +27,80 @@ const StyledHeader = styled.header<any>`
     height: 100px;
     margin-top: 20px;
     ${css({
-        p: 2,
-    })}
+  p: 2,
+})}
 `
-const StyledLink = styled(Link)<any>`
-    text-decoration: none;
-    ${css({
-        color: 'medium',
-        fontFamily: 'body',
-        '&:hover, &.active_link': {
-          color: 'darkest',
+
+const Header = ({ url = '' }) => {
+
+  const {contentfulNavigationMenu : {pages}}  = useStaticQuery(
+    graphql`
+      query {
+        contentfulNavigationMenu(id: {eq: "c4965efd-540d-59bb-8870-351f3cdcf04a"}) {
+          pages {
+            ... on ContentfulPage {
+              slug
+              name
+            }
+            ... on ContentfulCategory {
+              slug
+              name
+            }
+          }
         }
-    })}
-`
-const Header = ({ items, url = '' }) => (
-  <Flex  hAlignment="center">
-  <StyledHeader>
-    <Flex vAlignment="middle" hAlignment="between">
+      }
+    `
+  )
+  console.log('pages',pages);
+  
+  return (
+    <Flex hAlignment="center">
+      <StyledHeader>
+        <Flex vAlignment="middle" hAlignment="between">
 
-      <Link
-        to="/"
-      >
-        <StyledLogo sx={{
-          height: '24px',
-          width: '190px',
-          backgroundImage: `url(${url})`
-        }}>
-          {url}
-        </StyledLogo>
-      </Link>
+          <Link
+            to="/"
+          >
+            <StyledLogo sx={{
+              height: '24px',
+              width: '190px',
+              backgroundImage: `url(${url})`
+            }}>
+              {url}
+            </StyledLogo>
+          </Link>
 
 
 
-      <Flex vAlignment="middle" hAlignment="right" gap="medium">
-        {items &&
-          items.map(item => (
-            
-              <StyledLink
-                activeClassName="active_link"
-                key={item.node.name}
-                to={`/${item.node.name}`}
-              >
-                {slug(item.node.name)}
-              </StyledLink>
-            
-          ))}
-      
-      </Flex>
-    </Flex>
-  </StyledHeader>
-  </Flex>
-)
+          <Flex vAlignment="middle" hAlignment="right" gap="medium">
+            {pages &&
+              pages.map(page => (
+
+                <Link
+                  sx={{
+                    textDecoration: 'none',
+                    color: 'medium',
+                    fontFamily: 'body',
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    letterSpacing: "1px",
+                    '&:hover, &.active_link': {
+                      color: 'darkest',
+                    }
+                  }}
+                  activeClassName="active_link"
+                  key={page.slug}
+                  to={`/${page.slug}`}
+                >
+                  {slug(page.name)}
+                </Link>
+
+              ))}
+
+          </Flex>
+        </Flex>
+      </StyledHeader>
+    </Flex>)
+}
 
 export default Header

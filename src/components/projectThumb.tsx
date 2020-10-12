@@ -23,7 +23,7 @@ const StyledImage = styled.div<any>`
 const StyledTextOverlay = styled.div<any>`
   opacity: 0;
   position: absolute;
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,.8);
   top:0;
   bottom:0;
   left:0;
@@ -58,7 +58,12 @@ const ProjectThumb = ({ url, title }) => {
         backgroundImage: `url(${url})`
       }} />
       
-      <StyledTextOverlay data-id="overlay">
+      <StyledTextOverlay data-id="overlay"
+      sx={{
+        fontSize: "11px", 
+        fontWeight: "bold",
+        letterSpacing: "1px"
+      }}>
         {title}
       </StyledTextOverlay>
 

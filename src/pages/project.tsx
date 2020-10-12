@@ -35,7 +35,7 @@ const Project = (props) => {
     }
     return (
         <Flex direction="vertical">
-            <Header items={categories} url={logo && logo.file && logo.file.url}/>
+            <Header url={logo && logo.file && logo.file.url}/>
             <Flex hAlignment="center">
                 <StyledContainer>
 
