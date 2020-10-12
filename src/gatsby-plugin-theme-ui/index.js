@@ -13,7 +13,7 @@ export default {
     white: "#ffffff",
     lightest: "#f9f9f9",
     light: "#f4f4f4",
-    medium: "#909090",
+    medium: "#909090", // grey text
     dark: "#505050",
     darkest: "#070707"
   },
