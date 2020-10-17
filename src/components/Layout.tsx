@@ -1,10 +1,6 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
-import styled from "@emotion/styled";
-import React from "react";
-import { Flex } from "jank-ui";
-import { Link, graphql } from "gatsby";
-import Header from "./Header";
+import Header from "./header";
 
 type LayoutProps = {
   children?: any;

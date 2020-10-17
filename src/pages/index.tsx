@@ -3,7 +3,6 @@ import React from "react";
 import { Box, jsx } from "theme-ui";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
-import Header from "../components/header";
 import { Flex } from "jank-ui";
 
 import Carousel from "nuka-carousel";
