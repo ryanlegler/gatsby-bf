@@ -97,13 +97,13 @@ const Header = () => {
         position: "relative",
         width: "100%",
         maxWidth: "100%",
-        px: 2
+        px: [1, 2]
       }}
     >
       <Box
         sx={{
           flex: "1 1 auto",
-          pt: 4,
+          pt: [3, 4],
           pb: 3,
           px: 3
         }}
@@ -126,7 +126,7 @@ const Header = () => {
           </Link>
 
           <Box sx={hamburgerSx} onClick={toggleOpen}>
-            {!navOpen ? <NavIcon size="50" /> : <CloseIcon size="50" />}
+            {!navOpen ? <NavIcon size="30" /> : <CloseIcon size="30" />}
           </Box>
 
           <Box sx={navSx} onClick={toggleOpen}>
