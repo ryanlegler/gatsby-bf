@@ -1,34 +1,27 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Link } from "gatsby"
-import Header from "../components/header";
+import { Grid, jsx } from "theme-ui";
+import { Link } from "gatsby";
 import ProjectThumb from "../components/projectThumb";
-import styled from "@emotion/styled";
-import { Flex } from "jank-ui";
-const slug = require('slug')
+import Layout from "../components/Layout";
+const slug = require("slug");
 
-const StyledGrid = styled.div`
-  max-width: 1200px;
-  width: 100%;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-`
-
-const Category = (props) => {
-  
+const Category = props => {
   const { location, pageContext } = props;
   const { categories, category, logo } = pageContext;
-  const { projects } = category || {}
-
+  const { projects } = category || {};
 
   return (
-    <Flex direction="vertical">
-      <Header url={logo && logo.file && logo.file.url}/>
-      <Flex hAlignment="center">
-      <StyledGrid>
-        { projects && projects.map((item, index) => {
-          
+    <Layout>
+      <Grid
+        sx={{
+          maxWidth: [9, 9, 9],
+          width: "100%",
+          gridGap: [0, 0, 0],
+          gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))"
+        }}
+      >
+        {projects &&
+          projects.map((item, index) => {
             return (
               <Link
                 key={index}
@@ -39,19 +32,20 @@ const Category = (props) => {
                   position: `relative`
                 }}
               >
-              
-                <ProjectThumb url={item && item.thumbnail && item.thumbnail.file.url ? item.thumbnail.file.url : ''} title={item.name} />
-              
-            </Link>
-            )
-          }
-        )}
-      </StyledGrid>
-      </Flex>
-    </Flex>
-  )
-}
+                <ProjectThumb
+                  url={
+                    item && item.thumbnail && item.thumbnail.file.url
+                      ? item.thumbnail.file.url
+                      : ""
+                  }
+                  title={item.name}
+                />
+              </Link>
+            );
+          })}
+      </Grid>
+    </Layout>
+  );
+};
 
-export default Category
-
-
+export default Category;

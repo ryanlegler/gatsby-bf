@@ -1,42 +1,47 @@
-
 /** @jsx jsx */
-import React from "react"
-import { jsx } from "theme-ui"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Box, jsx, SxStyleProp } from "theme-ui";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { Flex } from "jank-ui";
+import { bgImageSx } from "../sx/utils";
+import React from "react";
 import styled from "@emotion/styled";
-import { Flex } from 'jank-ui'
-import { fontFamily } from "styled-system";
-import css from '@styled-system/css';
+import { Global } from "@emotion/core";
+import { Navicon } from "@emotion-icons/evil/Navicon";
+import { Close } from "@emotion-icons/evil/Close";
+import { MobileNavContext } from "./Provider";
 
-const slug = require('slug')
+const NavIcon = styled(Navicon)``;
+const CloseIcon = styled(Close)``;
 
-const StyledLogo = styled.div<any>`
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-indent: -99999px;
-  font-size: .01;
-  flex: 0 0 auto;
+const slug = require("slug");
 
-`
-
-const StyledHeader = styled.header<any>`
-    max-width: 1200px;
-    flex: 1 1 auto
-    ;
-    height: 100px;
-    margin-top: 20px;
-    ${css({
-  p: 2,
-})}
-`
-
-const Header = ({ url = '' }) => {
-
-  const {contentfulNavigationMenu : {pages}}  = useStaticQuery(
+const Header = () => {
+  const data = useStaticQuery(
     graphql`
       query {
-        contentfulNavigationMenu(id: {eq: "c4965efd-540d-59bb-8870-351f3cdcf04a"}) {
+        allContentfulHomePage {
+          nodes {
+            id
+            seo {
+              id
+              title
+              description
+              keywords
+            }
+            logo {
+              file {
+                url
+              }
+            }
+            images {
+              id
+              file {
+                url
+              }
+            }
+          }
+        }
+        contentfulNavigationMenu {
           pages {
             ... on ContentfulPage {
               slug
@@ -50,42 +55,96 @@ const Header = ({ url = '' }) => {
         }
       }
     `
-  )
-  console.log('pages',pages);
-  
-  return (
-    <Flex hAlignment="center">
-      <StyledHeader>
-        <Flex vAlignment="middle" hAlignment="between">
+  );
+  const { contentfulNavigationMenu, allContentfulHomePage } = data;
 
-          <Link
-            to="/"
-          >
-            <StyledLogo sx={{
-              height: '24px',
-              width: '190px',
-              backgroundImage: `url(${url})`
-            }}>
+  const { pages } = contentfulNavigationMenu ?? {};
+  const { images, logo, seo } = allContentfulHomePage.nodes[0];
+  const { url } = logo.file;
+
+  const mobileNavContext = React.useContext(MobileNavContext);
+  const { open: navOpen, toggleOpen } = mobileNavContext;
+
+  const hamburgerSx: SxStyleProp = {
+    display: ["block", "none"],
+    position: "relative",
+    zIndex: [1000]
+  };
+  const navSx: SxStyleProp = {
+    display: navOpen ? ["flex", "flex", "flex"] : ["none", "none", "flex"],
+    flexDirection: ["column", "column", "row"],
+    alignItems: ["center"],
+    justifyContent: ["center"],
+    position: ["absolute", "absolute", "relative"],
+    height: ["100vh", "100vh", "initial"],
+    zIndex: [100, 100, "inital"],
+    top: [0, 0, "inital"],
+    left: [0, 0, "inital"],
+    width: ["100%", "100%", "initial"],
+    backgroundColor: ["white", "white", "transparent"],
+    "a + a": {
+      mt: [2, 2, 0],
+      ml: [0, 0, 3]
+    }
+  };
+
+  return (
+    <Box
+      className="header"
+      sx={{
+        alignItems: "center",
+        display: "flex",
+        position: "relative",
+        width: "100%",
+        maxWidth: "100%",
+        px: 2
+      }}
+    >
+      <Box
+        sx={{
+          flex: "1 1 auto",
+          pt: 4,
+          pb: 3,
+          px: 3
+        }}
+      >
+        <Flex vAlignment="middle" hAlignment="between">
+          <Link to="/">
+            <Box
+              sx={{
+                ...bgImageSx,
+                textIndent: "-99999px",
+                fontSize: 0.01,
+                flex: "0 0 auto",
+                height: 3,
+                width: 6,
+                backgroundImage: `url(${url})`
+              }}
+            >
               {url}
-            </StyledLogo>
+            </Box>
           </Link>
 
+          <Box sx={hamburgerSx} onClick={toggleOpen}>
+            {!navOpen ? <NavIcon size="50" /> : <CloseIcon size="50" />}
+          </Box>
 
-
-          <Flex vAlignment="middle" hAlignment="right" gap="medium">
+          <Box sx={navSx} onClick={toggleOpen}>
             {pages &&
               pages.map(page => (
-
                 <Link
                   sx={{
-                    textDecoration: 'none',
-                    color: 'medium',
-                    fontFamily: 'body',
+                    textDecoration: "none",
+                    color: "medium",
+                    "&:visited": {
+                      color: "medium"
+                    },
                     fontSize: "12px",
+                    fontFamily: "body",
                     fontWeight: "bold",
                     letterSpacing: "1px",
-                    '&:hover, &.active_link': {
-                      color: 'darkest',
+                    "&:hover, &.active_link": {
+                      color: "darkest"
                     }
                   }}
                   activeClassName="active_link"
@@ -94,13 +153,20 @@ const Header = ({ url = '' }) => {
                 >
                   {slug(page.name)}
                 </Link>
-
               ))}
-
-          </Flex>
+          </Box>
         </Flex>
-      </StyledHeader>
-    </Flex>)
-}
+      </Box>
 
-export default Header
+      <Global
+        styles={{
+          body: {
+            overflow: navOpen ? "hidden" : "auto"
+          }
+        }}
+      />
+    </Box>
+  );
+};
+
+export default Header;

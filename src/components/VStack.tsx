@@ -1,10 +1,7 @@
-
-
 /** @jsx jsx */
-import { jsx } from "theme-ui"
+import { jsx } from "theme-ui";
 
 import * as React from "react";
-// import css from "@styled-system/css";
 import styled from "@emotion/styled";
 
 // type VerticalAlignment = "top" | "middle" | "bottom" | "between" | "around" | "evenly" | "baseline" | "stretch" | "";
@@ -12,7 +9,6 @@ import styled from "@emotion/styled";
 // type FlexDirection = "vertical" | "horizontal";
 
 // VStack
-
 
 // const getDirection = (direction?: FlexDirection) => {
 //     if (direction && direction === "vertical") {
@@ -97,7 +93,7 @@ import styled from "@emotion/styled";
 //             case 'bottom':
 //                 secondaryAxis = 'flex-end';
 //                 break
-            
+
 //         }
 //     }
 //     // if vertical flip it
@@ -112,7 +108,7 @@ import styled from "@emotion/styled";
 //             case 'right':
 //                 secondaryAxis = 'flex-end';
 //                 break
-    
+
 //         }
 //         switch (vAlignment) {
 //             case 'top':
@@ -167,84 +163,93 @@ import styled from "@emotion/styled";
 //     return 0;
 // };
 
-
-
-type GapSizes = 'none' | 's' | 'm' | 'l' | 'xl';
+type GapSizes = "none" | "s" | "m" | "l" | "xl";
 
 export type VStackProps = {
-    children: React.ReactNode;
-    gap?: GapSizes;
-    pad?: GapSizes;
-    grow?: boolean;
-    shrink?: boolean[]
-    fill?: string;
-    style?: any;
-    onClick?: () => void;
-    yAlign?: YAlign;
+  children: React.ReactNode;
+  gap?: GapSizes;
+  pad?: GapSizes;
+  grow?: boolean;
+  shrink?: boolean[];
+  fill?: string;
+  style?: any;
+  onClick?: () => void;
+  yAlign?: YAlign;
 };
 
-
 const StyledVStack = styled.div<any>`
-    display: grid;
-    
-`
-type YAlign = 'top' | 'middle' | 'bottom' | 'between' | 'between' | 'around' | 'evenly';
+  display: grid;
+`;
+type YAlign =
+  | "top"
+  | "middle"
+  | "bottom"
+  | "between"
+  | "between"
+  | "around"
+  | "evenly";
 
 const getGapSize = (gap: GapSizes): number => {
-    switch (gap) {
-        case 'none':
-            return 0
-        case 's':
-            return 1
-        case 'm':
-            return 2
-        case 'l':
-            return 3
-        case 'xl':
-            return 4
-    }
-}
+  switch (gap) {
+    case "none":
+      return 0;
+    case "s":
+      return 1;
+    case "m":
+      return 2;
+    case "l":
+      return 3;
+    case "xl":
+      return 4;
+  }
+};
 const getYAlign = (yAlign: YAlign): string => {
+  switch (yAlign) {
+    case "top":
+      return "start";
+    case "middle":
+      return "center";
+    case "bottom":
+      return "end";
+    case "between":
+      return "space-between";
+    case "around":
+      return "space-around";
+    case "evenly":
+      return "space-evenly";
+  }
+};
+const VStack: React.FC<VStackProps> = ({
+  children,
+  grow = true,
+  yAlign = "top",
+  pad,
+  gap,
+  style,
+  onClick,
+  shrink
+}) => {
+  const columnCount = !Array.isArray(children) ? 1 : children.length;
 
-    switch (yAlign) {
-        case 'top':
-            return 'start';
-        case 'middle':
-            return 'center';
-        case 'bottom':
-            return 'end';
-        case 'between':
-            return 'space-between';
-        case 'around':
-            return 'space-around';
-        case 'evenly':
-            return 'space-evenly';
-    }
-}
-const VStack: React.FC<VStackProps> = (
-    { children, grow = true, yAlign="top", pad, gap, style, onClick, shrink }
-) => {
-    const columnCount = !Array.isArray(children) ? 1 : children.length;
-    
-    const data = shrink || new Array(columnCount).fill(false);
-    const steps = data.map(item => !!item ? 'min-content' : '1fr').join(' ');
+  const data = shrink || new Array(columnCount).fill(false);
+  const steps = data.map(item => (!!item ? "min-content" : "1fr")).join(" ");
 
-    const gapSize = getGapSize(gap);
-    return (
-        <StyledVStack
-            sx={{
-                color: 'background',
-                gridGap: gapSize,
-                gridTemplateRows:`${steps}`,
-                height: grow ? '100%' : 'auto',
-                alignContent: getYAlign(yAlign)
-            }}
-            onClick={!!onClick ? onClick : undefined}
-            style={style}      
-        >
-            {children && children}
-        </StyledVStack>
-    );
+  const gapSize = getGapSize(gap);
+  return (
+    <StyledVStack
+      sx={{
+        color: "background",
+        gridGap: gapSize,
+        gridTemplateRows: `${steps}`,
+        height: grow ? "100%" : "auto",
+        alignContent: getYAlign(yAlign)
+      }}
+      onClick={!!onClick ? onClick : undefined}
+      style={style}
+    >
+      {children && children}
+    </StyledVStack>
+  );
 };
 
 export default VStack;
