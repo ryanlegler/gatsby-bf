@@ -53,7 +53,7 @@ const IndexPage = ({ data }) => {
   const { images, logo, seo } = allContentfulHomePage.nodes[0];
 
   const mobileNavContext = React.useContext(MobileNavContext) || {};
-  const { open: navOpen, toggleOpen } = mobileNavContext;
+  const { open: navOpen } = mobileNavContext;
 
   return (
     <Layout
