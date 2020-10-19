@@ -2,8 +2,6 @@
 import React from "react";
 import { Box, jsx } from "theme-ui";
 import { graphql } from "gatsby";
-import styled from "@emotion/styled";
-import { Flex } from "jank-ui";
 
 import Carousel from "nuka-carousel";
 import Layout from "../components/Layout";
@@ -54,7 +52,7 @@ const IndexPage = ({ data }) => {
   const { edges: categories } = allContentfulCategory;
   const { images, logo, seo } = allContentfulHomePage.nodes[0];
 
-  const mobileNavContext = React.useContext(MobileNavContext);
+  const mobileNavContext = React.useContext(MobileNavContext) || {};
   const { open: navOpen, toggleOpen } = mobileNavContext;
 
   return (

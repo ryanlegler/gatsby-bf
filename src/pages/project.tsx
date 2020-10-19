@@ -1,9 +1,7 @@
 /** @jsx jsx */
-import { Text, Box, jsx } from "theme-ui";
-import React from "react";
+import { Box, jsx } from "theme-ui";
 import { Flex } from "jank-ui";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import Header from "../components/header";
+import { Link } from "gatsby";
 import RichText from "../components/RichText";
 import Carousel from "nuka-carousel";
 import styled from "@emotion/styled";
