@@ -62,7 +62,7 @@ const Header = () => {
   const { images, logo, seo } = allContentfulHomePage.nodes[0];
   const { url } = logo.file;
 
-  const mobileNavContext = React.useContext(MobileNavContext);
+  const mobileNavContext = React.useContext(MobileNavContext) || {};
   const { open: navOpen, toggleOpen } = mobileNavContext;
 
   const hamburgerSx: SxStyleProp = {
