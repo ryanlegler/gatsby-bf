@@ -46,7 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
         content {
-          json
+          raw
         }
       }
     }
@@ -59,7 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
             name
             slug,
             description {
-              json
+              raw
             }
             descriptionLink
             descriptionLinkImage {

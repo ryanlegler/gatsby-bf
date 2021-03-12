@@ -12,6 +12,7 @@ const slug = require("slug");
 const Page = props => {
   const { location, pageContext } = props;
   const { categories, category, logo, content, image } = pageContext;
+
   return (
     <Layout>
       {image && (
@@ -20,7 +21,7 @@ const Page = props => {
           src={image.file.url}
         />
       )}
-      {content && content.json && (
+      {content && content.raw && (
         <Box
           sx={{
             fontSize: "14px",
@@ -32,7 +33,7 @@ const Page = props => {
             // mx: [0, 3, 3]
           }}
         >
-          <RichText text={content.json} />
+          <RichText text={JSON.parse(content.raw)} />
         </Box>
       )}
     </Layout>

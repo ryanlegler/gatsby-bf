@@ -97,7 +97,7 @@ const Header = () => {
         position: "relative",
         width: "100%",
         maxWidth: "100%",
-        px: [1, 2]
+        px: [2, 0, 0]
       }}
     >
       <Box
@@ -105,7 +105,6 @@ const Header = () => {
           flex: "1 1 auto",
           pt: [3, 4],
           pb: 3,
-          px: 3
         }}
       >
         <Flex vAlignment="middle" hAlignment="between">

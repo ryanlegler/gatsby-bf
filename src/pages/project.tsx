@@ -8,8 +8,10 @@ import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import { ChevronRight } from "@emotion-icons/evil/ChevronRight";
 import { ChevronLeft } from "@emotion-icons/evil/ChevronLeft";
+import { useMeasure } from "react-use";
 
 import { iconSx } from "../sx/utils";
+import * as React from "react";
 
 const IconChevronRight = styled(ChevronRight)``;
 const IconChevronLeft = styled(ChevronLeft)``;
@@ -30,33 +32,78 @@ const Project = props => {
   const nextItemIndex =
     projects && currentIndex < projects.length && currentIndex + 1;
 
+  const [slideIndex, setSlideIndex] = React.useState(0);
+
   const textSx = {
     color: "medium",
     fontSize: "11px",
     fontWeight: "bold",
     letterSpacing: "1px"
   };
+
+  const [ref, {  width }] = useMeasure();
+  console.log('slideIndex', slideIndex);
+
   return (
     <Layout>
-      {images && images.length && (
+      {images && !!images.length && (
         <Box
           sx={{
-            ".slider-control-bottomcenter li": {
-              position: "relative",
-              top: "32px"
+            position: 'relative',
+            ".slider-control-bottomcenter": {
+              display: 'none'
             }
           }}
         >
-          <Carousel wrapAround>
+          <Carousel
+              afterSlide={slideIndex => setSlideIndex(slideIndex )}
+              slideIndex={slideIndex}
+              wrapAround
+              renderCenterRightControls={()=><></>}
+              renderCenterLeftControls={()=><></>}
+              renderBottomRightControls={({ previousSlide, nextSlide }) => (
+                  <>
+                  <Box as='button' sx={{
+                      position: "relative",
+                      top: "32px",
+                      left: `-${width}px`
+
+                  }} onClick={previousSlide}>Previous</Box>
+                    <Box as='button' sx={{
+                      position: "relative",
+                      top: "32px",
+
+                    }} onClick={nextSlide}>Next</Box>
+                  </>
+              )}
+          >
             {images.map((image, index) => (
-              <div key={index} style={{ flex: "0 0 100%" }}>
+              <Box key={index} style={{ flex: "0 0 100%" }} >
                 <img
-                  style={{ objectFit: "cover", width: "100%", height: "50vh" }}
+                  style={{ objectFit: "cover", width: "100%", height: "60vh" }}
                   src={image.file.url}
                 />
-              </div>
+              </Box>
             ))}
           </Carousel>
+
+         <Box ref={ref} style={{ position: 'absolute', right: '50px', marginTop: '5px', display: "flex", flex: "0 0 100%" }}>
+           {images.map((image, index) => (
+                <Box as={'img'}
+                    sx={{
+                      opacity: `${index === slideIndex ? 1 : .6}`
+                    }}
+                    onClick={()=>setSlideIndex(index)}
+                    key={index}
+                    style={{ height: "30px", marginLeft: '10px' }}
+                    src={image.file.url}
+                />
+          ))}
+           {/*<button onClick={handleNext}>*/}
+           {/*  next*/}
+           {/*</button>*/}
+         </Box>
+
         </Box>
       )}
       <Box sx={{ px: [3, 3, 3] }}>
@@ -64,7 +111,7 @@ const Project = props => {
           <strong>{projectName}</strong>
         </Box>
 
-        {description && description.json && (
+        {description && description.raw && (
           <Box
             sx={{
               fontSize: "14px",
@@ -73,7 +120,7 @@ const Project = props => {
               maxWidth: ["100%", "700px", "600px"]
             }}
           >
-            <RichText text={description.json} />
+            <RichText text={JSON.parse(description.raw)} />
           </Box>
         )}
 
@@ -86,7 +133,9 @@ const Project = props => {
           </a>
         )}
 
-        <Flex hAlignment="right" vAlignment="middle">
+
+
+        <Flex hAlignment="right" vAlignment="middle" gap="medium">
           {!!nextItemIndex && projects[previousItemIndex] && (
             <Link
               to={`/${category.slug}/${projects[previousItemIndex].slug}`}
@@ -95,12 +144,13 @@ const Project = props => {
                 ...textSx
               }}
             >
-              <Box sx={iconSx}>
-                <IconChevronLeft size="45" />
+              <Box>
+                {/*<IconChevronLeft size="45" />*/}
+                Previous Project
               </Box>
             </Link>
           )}
-          {/* 
+          {/*
         {nextItemIndex &&
           projects[previousItemIndex] &&
           projects[nextItemIndex] && (
@@ -117,8 +167,9 @@ const Project = props => {
                 ...textSx
               }}
             >
-              <Box sx={iconSx}>
-                <IconChevronRight size="45" />
+              <Box>
+                Next Project
+                {/*<IconChevronRight size="45" />*/}
               </Box>
             </Link>
           )}

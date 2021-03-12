@@ -19,6 +19,7 @@ const Layout = ({ children, containerSx = {} }: LayoutProps) => {
       <Box
         sx={{
           maxWidth: "1600px",
+          px: [0, 3],
           width: "100%",
           display: "flex",
           flexDirection: "column",

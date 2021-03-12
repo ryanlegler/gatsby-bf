@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import React from "react"
+
 import { jsx, } from "theme-ui"
 import { BLOCKS, MARKS, Document } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Fragment } from "react"
+import * as React from "react";
 
 const Bold = ({ children }) => (
   <strong>{children}</strong>
@@ -40,6 +41,9 @@ type RichTextProps = {
 }
 
 const RichText: React.FC<RichTextProps> = ({ text }) => {
+  
+  console.log('text', text);
+  
   if (!text || typeof text !== "object") {
     return null
   }

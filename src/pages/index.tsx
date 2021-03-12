@@ -61,26 +61,15 @@ const IndexPage = ({ data }) => {
         ".slider-control-bottomcenter": {
           display: "none"
         },
-        ".header": {
-          width: "100%",
-          position: "absolute",
-          zIndex: 1,
-          display: "flex",
-          alignItems: "center",
-          a: {
-            textDecoration: "none",
-            color: !navOpen ? "light" : "medium",
-            "&:hover, &.active_link": {
-              color: !navOpen ? "light" : "medium"
-            }
-          }
-        },
         ".slider-list": {
           transition: "height 300ms"
         },
         ".slider-control-bottomcenter li": {
           position: "relative",
           top: "32px"
+        },
+        ".slider-control-centerleft, .slider-control-centerright": {
+          display: "none"
         }
       }}
     >
@@ -89,6 +78,8 @@ const IndexPage = ({ data }) => {
         speed={1000}
         heightMode="current"
         wrapAround
+        autoplay
+        // pauseOnHover
       >
         {images.map((image, index) => (
           <div key={index} style={{ flex: "0 0 100%", height: "100%" }}>
