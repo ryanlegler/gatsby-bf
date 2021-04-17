@@ -83,11 +83,11 @@ const IndexPage = ({ data }) => {
       >
         {images.map((image, index) => (
           <div key={index} style={{ flex: "0 0 100%", height: "100%" }}>
-            <img
-              style={{
+            <Box as={"img"}
+              sx={{
                 objectFit: "cover",
                 width: "100%",
-                height: `${image.file.details.height}px`
+                height: ['calc(100vh - 78px)', "100%"],
               }}
               src={image.file.url}
             />

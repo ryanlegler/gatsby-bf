@@ -17,7 +17,7 @@ const Category = props => {
           maxWidth: [9, 9, 9],
           width: "100%",
           gridGap: [0, 0, 0],
-          gridTemplateColumns: ["repeat(auto-fill, minmax(200px, 1fr))", "repeat(auto-fill, minmax(300px, 1fr))", "repeat(auto-fill, minmax(350px, 1fr))"]
+          gridTemplateColumns: ["repeat(auto-fill, minmax(150px, 1fr))", "repeat(auto-fill, minmax(300px, 1fr))", "repeat(auto-fill, minmax(350px, 1fr))"]
         }}
       >
         {projects &&
