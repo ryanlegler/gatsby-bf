@@ -13,8 +13,34 @@ import { useMeasure } from "react-use";
 import { iconSx } from "../sx/utils";
 import * as React from "react";
 
-const IconChevronRight = styled(ChevronRight)``;
-const IconChevronLeft = styled(ChevronLeft)``;
+
+
+
+
+const IconChevronRight = styled(ChevronRight)`
+  z-index: 1;
+  position: relative;
+  width: 30px`;
+
+
+
+const IconChevronLeft = styled(ChevronLeft)`
+  width: 30px;
+  z-index: 1;
+  position: relative;;
+`;
+
+const NavButton = styled(Box)`
+  position: relative;
+  
+  background: none;
+  border: none;
+  opacity: .5;
+  cursor: pointer;
+  &:hover {
+    opacity: 1
+  }
+`;
 
 const Project = props => {
   const { project = {}, logo, projects, category } = props.pageContext;
@@ -42,7 +68,14 @@ const Project = props => {
   };
 
   const [ref, {  width }] = useMeasure();
-  console.log('slideIndex', slideIndex);
+
+
+  const offset = 90;
+  const thumbsOffset = 30;
+  const rightButtonOffset = offset - 15;
+  const leftButtonOffset = width - offset + rightButtonOffset - 5;
+
+
 
   return (
     <Layout>
@@ -50,6 +83,9 @@ const Project = props => {
         <Box
           sx={{
             position: 'relative',
+            ".slider": {
+              paddingBottom: ['5px', '10px']
+            },
             ".slider-control-bottomcenter": {
               display: 'none'
             }
@@ -63,46 +99,68 @@ const Project = props => {
               renderCenterLeftControls={()=><></>}
               renderBottomRightControls={({ previousSlide, nextSlide }) => (
                   <>
-                  <Box as='button' sx={{
-                      position: "relative",
-                      top: "32px",
-                      left: `-${width}px`
-
-                  }} onClick={previousSlide}>Previous</Box>
-                    <Box as='button' sx={{
-                      position: "relative",
-                      top: "32px",
-
-                    }} onClick={nextSlide}>Next</Box>
+                  <NavButton
+                      as='button' sx={{
+                      left: `-${leftButtonOffset}px`,
+                      mr: ['5px', 0],
+                      top: ['29px', '32px' ]
+                  }} onClick={previousSlide}> <IconChevronLeft /> </NavButton>
+                    <NavButton as='button' sx={{
+                      right: `${rightButtonOffset}px`,
+                      top: ['29px', '32px' ],
+                      mr: ['5px', 0],
+                    }} onClick={nextSlide}> <IconChevronRight /> </NavButton>
                   </>
               )}
           >
             {images.map((image, index) => (
               <Box key={index} style={{ flex: "0 0 100%" }} >
                 <img
-                  style={{ objectFit: "cover", width: "100%", height: "60vh" }}
+                  style={{ objectFit: "cover", width: "100%"}}
                   src={image.file.url}
                 />
               </Box>
             ))}
           </Carousel>
 
-         <Box ref={ref} style={{ position: 'absolute', right: '50px', marginTop: '5px', display: "flex", flex: "0 0 100%" }}>
-           {images.map((image, index) => (
-                <Box as={'img'}
-                    sx={{
-                      opacity: `${index === slideIndex ? 1 : .6}`
-                    }}
-                    onClick={()=>setSlideIndex(index)}
-                    key={index}
-                    style={{ height: "30px", marginLeft: '10px' }}
-                    src={image.file.url}
-                />
-          ))}
-           {/*<button onClick={handleNext}>*/}
-           {/*  next*/}
-           {/*</button>*/}
+         <Box ref={ref} sx={{ zIndex: 0, pointerEvents: 'none', position: 'absolute', right: ['10px', '0'], display: "flex", flex: "0 0 100%" }}>
+           <Box sx={{position: 'relative', right:`${thumbsOffset}px`}}>
+             {images.map((image, index) => (
+                  <Box as={'img'}
+                      sx={{
+                        opacity: `${index === slideIndex ? 1 : .4}`,
+                        height: ['25px', '30px'],
+                        pointerEvents: 'initial',
+                        cursor: 'pointer'
+                      }}
+                      onClick={()=>setSlideIndex(index)}
+                      key={index}
+                      src={image.file.url}
+                  />
+            ))}
+           </Box>
+
+           {nextItemIndex && projects[nextItemIndex] && (
+               <Link
+                   to={`/${category.slug}/${projects[nextItemIndex].slug}`}
+                   sx={{
+                     textDecoration: `none`,
+                     display: 'flex',
+                     alignItems: 'center',
+                     pointerEvents: 'initial',
+                     ...textSx
+                   }}
+               >
+                 <Box>
+                   Next Project
+                 </Box>
+               </Link>
+           )}
+
          </Box>
+
+
+
 
         </Box>
       )}
@@ -133,47 +191,38 @@ const Project = props => {
           </a>
         )}
 
+        {/*<Flex hAlignment="right" vAlignment="middle" gap="medium">*/}
+        {/*  {!!nextItemIndex && projects[previousItemIndex] && (*/}
+        {/*    <Link*/}
+        {/*      to={`/${category.slug}/${projects[previousItemIndex].slug}`}*/}
+        {/*      sx={{*/}
+        {/*        textDecoration: `none`,*/}
+        {/*        ...textSx*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      <Box>*/}
+        {/*        /!*<IconChevronLeft size="45" />*!/*/}
+        {/*        Previous Project*/}
+        {/*      </Box>*/}
+        {/*    </Link>*/}
+        {/*  )}*/}
 
 
-        <Flex hAlignment="right" vAlignment="middle" gap="medium">
-          {!!nextItemIndex && projects[previousItemIndex] && (
-            <Link
-              to={`/${category.slug}/${projects[previousItemIndex].slug}`}
-              sx={{
-                textDecoration: `none`,
-                ...textSx
-              }}
-            >
-              <Box>
-                {/*<IconChevronLeft size="45" />*/}
-                Previous Project
-              </Box>
-            </Link>
-          )}
-          {/*
-        {nextItemIndex &&
-          projects[previousItemIndex] &&
-          projects[nextItemIndex] && (
-            <Flex shrink>
-              <span sx={textSx}>|</span>
-            </Flex>
-          )} */}
-
-          {nextItemIndex && projects[nextItemIndex] && (
-            <Link
-              to={`/${category.slug}/${projects[nextItemIndex].slug}`}
-              sx={{
-                textDecoration: `none`,
-                ...textSx
-              }}
-            >
-              <Box>
-                Next Project
-                {/*<IconChevronRight size="45" />*/}
-              </Box>
-            </Link>
-          )}
-        </Flex>
+        {/*  {nextItemIndex && projects[nextItemIndex] && (*/}
+        {/*    <Link*/}
+        {/*      to={`/${category.slug}/${projects[nextItemIndex].slug}`}*/}
+        {/*      sx={{*/}
+        {/*        textDecoration: `none`,*/}
+        {/*        ...textSx*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      <Box>*/}
+        {/*        Next Project*/}
+        {/*        /!*<IconChevronRight size="45" />*!/*/}
+        {/*      </Box>*/}
+        {/*    </Link>*/}
+        {/*  )}*/}
+        {/*</Flex>*/}
       </Box>
     </Layout>
   );
