@@ -83,6 +83,9 @@ const Project = props => {
         <Box
           sx={{
             position: 'relative',
+            '*': {
+             outine: 'none'
+            },
             ".slider": {
               paddingBottom: ['5px', '10px']
             },
