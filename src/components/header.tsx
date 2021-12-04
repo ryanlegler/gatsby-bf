@@ -97,14 +97,14 @@ const Header = () => {
         position: "relative",
         width: "100%",
         maxWidth: "100%",
-        px: [2, 0, 0]
+        px: [21, 0, 0]
       }}
     >
       <Box
         sx={{
           flex: "1 1 auto",
-          pt: [3, 4],
-          pb: 3,
+          pt: [2, 4],
+          pb: [2, 3],
         }}
       >
         <Flex vAlignment="middle" hAlignment="between">
@@ -115,8 +115,8 @@ const Header = () => {
                 textIndent: "-99999px",
                 fontSize: 0.01,
                 flex: "0 0 auto",
-                height: 3,
-                width: 6,
+                height: '26px',
+                width: ['300px','410px'],
                 backgroundImage: `url(${url})`
               }}
             >
