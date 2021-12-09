@@ -8,6 +8,8 @@ import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import { ChevronRight } from "@emotion-icons/evil/ChevronRight";
 import { ChevronLeft } from "@emotion-icons/evil/ChevronLeft";
+import {ArrowLeft} from '@emotion-icons/bootstrap/ArrowLeft'
+import {ArrowRight} from '@emotion-icons/bootstrap/ArrowRight'
 import { useMeasure } from "react-use";
 
 import { iconSx } from "../sx/utils";
@@ -17,15 +19,15 @@ import * as React from "react";
 
 
 
-const IconChevronRight = styled(ChevronRight)`
+const IconChevronRight = styled(ArrowRight)`
   z-index: 1;
   position: relative;
-  width: 30px`;
+  width: 25px`;
 
 
 
-const IconChevronLeft = styled(ChevronLeft)`
-  width: 30px;
+const IconChevronLeft = styled(ArrowLeft)`
+  width: 25px;
   z-index: 1;
   position: relative;;
 `;
@@ -64,16 +66,17 @@ const Project = props => {
     color: "medium",
     fontSize: "11px",
     fontWeight: "bold",
-    letterSpacing: "1px"
+    letterSpacing: "1px",
+    mt: "-2px"
   };
 
   const [ref, {  width }] = useMeasure();
 
 
-  const offset = 90;
-  const thumbsOffset = 30;
+  const offset = 100;
+  const thumbsOffset = 45;
   const rightButtonOffset = offset - 15;
-  const leftButtonOffset = width - offset + rightButtonOffset - 5;
+  const leftButtonOffset = width - offset + rightButtonOffset + 24;
 
 
 
@@ -104,13 +107,15 @@ const Project = props => {
                   <>
                   <NavButton
                       as='button' sx={{
-                      left: `-${leftButtonOffset}px`,
+                      right: `${leftButtonOffset}px`,
                       mr: ['5px', 0],
-                      top: ['29px', '32px' ]
-                  }} onClick={previousSlide}> <IconChevronLeft /> </NavButton>
+                      top: ['27px', '29px' ]
+                  }} onClick={previousSlide}>
+                      <IconChevronLeft />
+                  </NavButton>
                     <NavButton as='button' sx={{
                       right: `${rightButtonOffset}px`,
-                      top: ['29px', '32px' ],
+                      top: ['27px', '29px' ],
                       mr: ['5px', 0],
                     }} onClick={nextSlide}> <IconChevronRight /> </NavButton>
                   </>
