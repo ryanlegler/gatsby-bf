@@ -116,7 +116,6 @@ const Project = props => {
                     <NavButton as='button' sx={{
                       right: `${rightButtonOffset}px`,
                       top: ['27px', '29px' ],
-                      mr: ['5px', 0],
                     }} onClick={nextSlide}> <IconChevronRight /> </NavButton>
                   </>
               )}
