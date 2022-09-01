@@ -144,7 +144,7 @@ exports.createPages = ({ graphql, actions }) => {
                 },
             });
 
-            if (category.node.project) {
+            if (category.node && category.node.project) {
                 createPage({
                     path: `${slug(category.node.slug)}/${slug(category.node.project.slug)}`,
                     component: projectPage,
@@ -156,34 +156,38 @@ exports.createPages = ({ graphql, actions }) => {
                 });
             }
 
-            category?.node?.subCategory?.forEach((subCategory) => {
-                createPage({
-                    path: `${slug(category.node.slug)}/${slug(subCategory.slug)}`,
-                    component: categoryPage,
-                    context: {
-                        projects: subCategory.projects,
-                        id: subCategory.id,
-                    },
-                });
-                subCategory?.projects?.forEach((project) => {
+            category.node &&
+                category.node.subCategory &&
+                category.node.subCategory.forEach((subCategory) => {
                     createPage({
-                        path: `${slug(category.node.slug)}/${slug(subCategory.slug)}/${slug(
-                            project.slug
-                        )}`,
-                        component: projectPage,
+                        path: `${slug(category.node.slug)}/${slug(subCategory.slug)}`,
+                        component: categoryPage,
                         context: {
-                            id: project.id,
-                            category: subCategory,
                             projects: subCategory.projects,
-                            project,
+                            id: subCategory.id,
                         },
                     });
+                    subCategory &&
+                        subCategory.projects &&
+                        subCategory.projects.forEach((project) => {
+                            createPage({
+                                path: `${slug(category.node.slug)}/${slug(subCategory.slug)}/${slug(
+                                    project.slug
+                                )}`,
+                                component: projectPage,
+                                context: {
+                                    id: project.id,
+                                    category: subCategory,
+                                    projects: subCategory.projects,
+                                    project,
+                                },
+                            });
+                        });
                 });
-            });
-            // PROJECT PAGE
 
             // PROJECT PAGE
             category &&
+                category.node &&
                 category.node.projects &&
                 category.node.projects.forEach((project) => {
                     createPage({
