@@ -69,6 +69,7 @@ const Header = () => {
         display: ["block", "block", "none"],
         position: "relative",
         zIndex: [1000],
+        color: "medium",
     };
     const navSx: SxStyleProp = {
         display: navOpen ? ["flex", "flex", "flex"] : ["none", "none", "flex"],
