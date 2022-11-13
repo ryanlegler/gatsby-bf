@@ -21,7 +21,7 @@ const NavButton = styled(Box)`
     cursor: pointer;
     padding: 0;
     > * {
-        width: 25px;
+        width: 20px;
         z-index: 1;
         position: relative;
     }
