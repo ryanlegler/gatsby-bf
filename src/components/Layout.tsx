@@ -13,6 +13,7 @@ const Layout = ({ children, containerSx = {} }: LayoutProps) => {
                 justifyContent: "center",
                 display: "flex",
                 width: "100%",
+                mb: 4,
                 ...containerSx,
             }}
         >
