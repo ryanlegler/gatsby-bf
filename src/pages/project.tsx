@@ -83,7 +83,7 @@ const Project = (props) => {
                                     display: "flex",
                                     mr: [2, 0],
                                     "> * + *": {
-                                        marginLeft: 1,
+                                        marginLeft: "10px !important",
                                     },
                                 }}
                             >
