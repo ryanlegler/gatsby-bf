@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Global, css } from "@emotion/core";
-import { ThemeProvider } from "emotion-theming";
+import { ThemeProvider } from "@emotion/react";
 import theme from "../gatsby-plugin-theme-ui";
 
 export const MobileNavContext = React.createContext(undefined);
