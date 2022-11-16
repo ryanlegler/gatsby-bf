@@ -9,17 +9,19 @@ const Category = (props) => {
     const { location, pageContext } = props;
     const { categories, projects } = pageContext;
 
+    console.log("categories", categories);
+
     return (
         <Layout>
             <Grid
                 sx={{
                     maxWidth: [9, 9, 9],
+                    margin: " 0 auto",
                     width: "100%",
                     gridGap: [0, 0, 0],
                     gridTemplateColumns: [
-                        "repeat(auto-fill, minmax(150px, 1fr))",
-                        "repeat(auto-fill, minmax(300px, 1fr))",
-                        "repeat(auto-fill, minmax(350px, 1fr))",
+                        "repeat(auto-fill, minmax(250px, 2fr))",
+                        "repeat(auto-fill, minmax(250px, 3fr))",
                     ],
                 }}
             >
@@ -27,7 +29,7 @@ const Category = (props) => {
                     return (
                         <Link
                             key={index}
-                            to={`${location.pathname}/${slug(item?.name || "")}`}
+                            to={`${location.pathname}/${slug(item?.slug || "")}`}
                             style={{
                                 color: `white`,
                                 textDecoration: `none`,

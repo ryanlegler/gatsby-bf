@@ -82,6 +82,7 @@ const Header = () => {
         top: [0, 0, "initial"],
         left: [0, 0, "initial"],
         width: ["100%", "100%", "initial"],
+
         backgroundColor: ["white", "white", "transparent"],
         "a + a": {
             mt: [2, 2, 0],
@@ -97,14 +98,16 @@ const Header = () => {
                 display: "flex",
                 position: "relative",
                 width: "100%",
-                maxWidth: "100%",
+                // maxWidth: "100%",
+                maxWidth: 9,
+                margin: "0 auto",
                 px: [21, 0, 0],
             }}
         >
             <Box
                 sx={{
                     flex: "1 1 auto",
-                    pt: [2, 4],
+                    pt: [2, 6],
                     pb: [2, 3],
                 }}
             >
@@ -131,7 +134,7 @@ const Header = () => {
                         {!navOpen ? <NavIcon size="30" /> : <CloseIcon size="30" />}
                     </Box>
 
-                    <Box sx={navSx} onClick={toggleOpen}>
+                    <Box sx={navSx}>
                         {pages &&
                             pages.map((page) => (
                                 <Link
@@ -141,7 +144,7 @@ const Header = () => {
                                         "&:visited": {
                                             color: "medium",
                                         },
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         fontFamily: "body",
                                         fontWeight: "bold",
                                         letterSpacing: "1px",
@@ -164,6 +167,12 @@ const Header = () => {
                 styles={{
                     body: {
                         overflow: navOpen ? "hidden" : "auto",
+                    },
+                    ".slider-control-topleft": {
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        justifyContent: "center",
                     },
                 }}
             />
