@@ -20,7 +20,7 @@ const Category = (props) => {
                     width: "100%",
                     gridGap: [0, 0, 0],
                     gridTemplateColumns: [
-                        "repeat(auto-fill, minmax(250px, 2fr))",
+                        "repeat(auto-fill, minmax(200px, 2fr))",
                         "repeat(auto-fill, minmax(250px, 3fr))",
                     ],
                 }}

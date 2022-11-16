@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import * as React from "react";
 import { Box, jsx } from "theme-ui";
 import { Link } from "gatsby";
 import RichText from "../../components/RichText";
@@ -6,7 +7,6 @@ import Carousel from "nuka-carousel";
 import styled from "@emotion/styled";
 import { ArrowLeft } from "@emotion-icons/bootstrap/ArrowLeft";
 import { ArrowRight } from "@emotion-icons/bootstrap/ArrowRight";
-import * as React from "react";
 import {
     carouselWrapStyles,
     controlsStyles,
@@ -18,7 +18,6 @@ import {
 import { ProjectInnerProps } from "./types";
 
 const IconChevronRight = styled(ArrowRight)``;
-
 const IconChevronLeft = styled(ArrowLeft)``;
 
 export function ProjectInner({
@@ -110,13 +109,34 @@ export function ProjectInner({
                             </Box>
                         )}
                     >
-                        {images?.map((image, index) => (
+                        {/* {images?.map((image, index) => (
                             <Box key={index} style={{ flex: "0 0 100%" }}>
                                 <img
                                     style={{ objectFit: "cover", width: "100%" }}
                                     src={image.file.url}
                                 />
                             </Box>
+                        ))}
+                         */}
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    aspectRatio: "16 / 9",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <Box
+                                    as={"img"}
+                                    sx={{
+                                        objectFit: "cover",
+                                        height: ["calc(100vh - 78px)", "100%"],
+                                    }}
+                                    src={image.file.url}
+                                />
+                            </div>
                         ))}
                     </Carousel>
 
@@ -132,7 +152,7 @@ export function ProjectInner({
                     ></Box>
                 </Box>
             )}
-            <Box sx={{ maxWidth: 9, margin: "0 auto", width: "100%" }}>
+            <Box sx={{ p: [3, 0], maxWidth: 9, margin: "0 auto", width: "100%" }}>
                 <Box sx={{ fontSize: "14px", marginTop: "50px" }}>
                     {projectName ? <strong>{projectName}</strong> : null}
                 </Box>
