@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "author": "Ryan Legler <ryan.legler@gmail.com>",
   "dependencies": {
+    "@theme-ui/match-media": "^0.15.4",
     "@types/helmet": "0.0.45",
-    "embla-carousel-react": "^1.2.18",
     "emotion-icons": "^2.15.0",
     "gatsby": "^3.0.0",
     "gatsby-image": "^3.0.0",
@@ -19,7 +19,6 @@
     "gatsby-source-contentful": "^5.0.1",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-source-graphql": "^3.0.0",
-    "jank-ui": "^0.1.17",
     "nuka-carousel": "^4.7.5",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

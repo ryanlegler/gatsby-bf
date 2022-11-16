@@ -9,6 +9,7 @@ import { Global } from "@emotion/core";
 import { Navicon } from "@emotion-icons/evil/Navicon";
 import { Close } from "@emotion-icons/evil/Close";
 import { MobileNavContext } from "./Provider";
+import { useResponsiveValue, useBreakpointIndex } from "@theme-ui/match-media";
 
 const NavIcon = styled(Navicon)``;
 const CloseIcon = styled(Close)``;
@@ -64,6 +65,9 @@ const Header = () => {
 
     const mobileNavContext = React.useContext(MobileNavContext) || {};
     const { open: navOpen, toggleOpen } = mobileNavContext;
+    const isMobile = useBreakpointIndex() <= 2;
+
+    console.log("useBreakpointIndex()", useBreakpointIndex());
 
     const hamburgerSx: SxStyleProp = {
         display: ["block", "block", "none"],
@@ -111,7 +115,15 @@ const Header = () => {
                     pb: [2, 3],
                 }}
             >
-                <Flex vAlignment="middle" hAlignment="between">
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        display: "flex",
+
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {/* <Box vAlignment="middle" hAlignment="between"> */}
                     <Link to="/">
                         <Box
                             sx={{
@@ -134,7 +146,7 @@ const Header = () => {
                         {!navOpen ? <NavIcon size="30" /> : <CloseIcon size="30" />}
                     </Box>
 
-                    <Box sx={navSx}>
+                    <Box sx={navSx} onClick={isMobile ? toggleOpen : undefined}>
                         {pages &&
                             pages.map((page) => (
                                 <Link
@@ -160,7 +172,7 @@ const Header = () => {
                                 </Link>
                             ))}
                     </Box>
-                </Flex>
+                </Box>
             </Box>
 
             <Global

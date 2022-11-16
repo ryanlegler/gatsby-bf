@@ -3542,6 +3542,11 @@
   resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.3.5.tgz#cfd228c74bcc7840a7fe9e507858486ee4d403dc"
   integrity sha512-XqsyXmifbnHOui1flSq4V7Lb3U+06Dbn2Q/leyr/cRd6Xgc0naiztdmD0MbXNvxgU51a2Ur9hyP4PnO5wE0yRg==
 
+"@theme-ui/match-media@^0.15.4":
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/@theme-ui/match-media/-/match-media-0.15.4.tgz#d19666597d2f578b1406b714d039d9aa3fb75e6f"
+  integrity sha512-xjmu/Tkh9gR+QDrwQ7de39sEBLQhXngGgz4ZxzCO0+hZ4bGQkrS3AJU4p8LPV/GYbIk55mK19sh9jRBPqb5F9A==
+
 "@theme-ui/mdx@0.3.5":
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.3.5.tgz#60d26102dcc8b2095269de461dcf8f51fa18cf4c"
