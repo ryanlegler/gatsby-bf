@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { Box, jsx, SxStyleProp } from "theme-ui";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import { Flex } from "jank-ui";
 import { bgImageSx } from "../sx/utils";
 import React from "react";
 import styled from "@emotion/styled";
@@ -9,7 +8,7 @@ import { Global } from "@emotion/core";
 import { Navicon } from "@emotion-icons/evil/Navicon";
 import { Close } from "@emotion-icons/evil/Close";
 import { MobileNavContext } from "./Provider";
-import { useResponsiveValue, useBreakpointIndex } from "@theme-ui/match-media";
+import { useBreakpointIndex } from "@theme-ui/match-media";
 
 const NavIcon = styled(Navicon)``;
 const CloseIcon = styled(Close)``;
@@ -67,8 +66,6 @@ const Header = () => {
     const { open: navOpen, toggleOpen } = mobileNavContext;
     const isMobile = useBreakpointIndex() <= 2;
 
-    console.log("useBreakpointIndex()", useBreakpointIndex());
-
     const hamburgerSx: SxStyleProp = {
         display: ["block", "block", "none"],
         position: "relative",
@@ -102,7 +99,6 @@ const Header = () => {
                 display: "flex",
                 position: "relative",
                 width: "100%",
-                // maxWidth: "100%",
                 maxWidth: 9,
                 margin: "0 auto",
                 px: [21, 0, 0],
@@ -123,7 +119,6 @@ const Header = () => {
                         justifyContent: "space-between",
                     }}
                 >
-                    {/* <Box vAlignment="middle" hAlignment="between"> */}
                     <Link to="/">
                         <Box
                             sx={{
@@ -133,7 +128,6 @@ const Header = () => {
                                 flex: "0 0 auto",
                                 height: "21px",
                                 backgroundPosition: "left -1px",
-                                // height: "26px",
                                 width: ["260px", "410px"],
                                 backgroundImage: `url(${url})`,
                             }}
