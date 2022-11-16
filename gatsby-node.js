@@ -200,6 +200,7 @@ exports.createPages = ({ graphql, actions }) => {
                             projects: category.node.projects,
                             categories,
                             logo,
+                            autoplay: project.autoplay,
                         },
                     });
                 });
