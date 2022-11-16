@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Ryan Legler <ryan.legler@gmail.com>",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "@theme-ui/match-media": "^0.15.4",
     "@types/helmet": "0.0.45",
     "emotion-icons": "^2.15.0",
