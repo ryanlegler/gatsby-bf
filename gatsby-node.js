@@ -70,14 +70,22 @@ exports.createPages = ({ graphql, actions }) => {
                     nodes {
                         name
                         slug
-                        image {
+                        description {
+                            raw
+                        }
+                        descriptionLink
+                        descriptionLinkImage {
                             title
+                            description
                             file {
                                 url
                             }
                         }
-                        content {
-                            raw
+                        images {
+                            title
+                            file {
+                                url
+                            }
                         }
                     }
                 }
@@ -123,9 +131,9 @@ exports.createPages = ({ graphql, actions }) => {
                     id: page.id,
                     name: page.name,
                     slug: page.slug,
-                    content: page.content,
-                    image: page.image,
-                    categories,
+                    description: page.description,
+                    descriptionLinkImage: page.descriptionLinkImage,
+                    images: page.images,
                     logo,
                 },
             });
