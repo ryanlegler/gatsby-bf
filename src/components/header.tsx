@@ -62,8 +62,8 @@ const Header = () => {
     const { images, logo, seo } = allContentfulHomePage.nodes[0];
     const { url } = logo.file;
 
-    const mobileNavContext = React.useContext(MobileNavContext) || {};
-    const { open: navOpen, toggleOpen } = mobileNavContext;
+    const { open: navOpen, toggleOpen } = React.useContext(MobileNavContext) || {};
+
     const isMobile = useBreakpointIndex() <= 2;
 
     const hamburgerSx: SxStyleProp = {
@@ -144,6 +144,7 @@ const Header = () => {
                         {pages &&
                             pages.map((page) => (
                                 <Link
+                                    partiallyActive
                                     sx={{
                                         textDecoration: "none",
                                         color: "medium",
