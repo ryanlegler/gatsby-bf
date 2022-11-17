@@ -5,7 +5,7 @@ import React from "react";
 import { ProjectInner } from "../components/project/projectInner";
 
 const Page = (props) => {
-    const { description, descriptionLinkImage, descriptionLink, images } = props.pageContext;
+    const { description, descriptionLinkImage, descriptionLink, images, name } = props.pageContext;
 
     const [slideIndex, setSlideIndex] = React.useState(0);
     const innerProps = {
@@ -15,6 +15,7 @@ const Page = (props) => {
         description,
         descriptionLink,
         descriptionLinkImage,
+        name,
     };
 
     return (

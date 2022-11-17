@@ -7,13 +7,7 @@ import { ProjectInner } from "../components/project/projectInner";
 
 const Project = (props) => {
     const { project = {}, projects, category, autoplay } = props.pageContext;
-    const {
-        images = [],
-        name: projectName = "",
-        description,
-        descriptionLink,
-        descriptionLinkImage,
-    } = project;
+    const { images = [], name = "", description, descriptionLink, descriptionLinkImage } = project;
 
     const currentIndex = projects && projects.findIndex((item) => item.slug === project.slug);
     const nextItemIndex = projects && currentIndex < projects.length && currentIndex + 1;
@@ -26,7 +20,7 @@ const Project = (props) => {
         setSlideIndex,
         nextItemIndex,
         projects,
-        projectName,
+        name,
         description,
         descriptionLink,
         descriptionLinkImage,

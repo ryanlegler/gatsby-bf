@@ -27,7 +27,7 @@ export function ProjectInner({
     setSlideIndex,
     nextItemIndex,
     projects,
-    projectName,
+    name,
     description,
     descriptionLink,
     descriptionLinkImage,
@@ -154,7 +154,7 @@ export function ProjectInner({
             )}
             <Box sx={{ p: [3, 0], maxWidth: 9, margin: "0 auto", width: "100%" }}>
                 <Box sx={{ fontSize: "14px", marginTop: "50px" }}>
-                    {projectName ? <strong>{projectName}</strong> : null}
+                    {name ? <strong>{name}</strong> : null}
                 </Box>
 
                 {description?.raw && (
