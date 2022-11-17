@@ -3,7 +3,11 @@ import { Global, css } from "@emotion/core";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../gatsby-plugin-theme-ui";
 
-export const MobileNavContext = React.createContext(undefined);
+export type MobileNavContextProps = {
+    open?: boolean;
+    toggleOpen?: () => void;
+};
+export const MobileNavContext = React.createContext<MobileNavContextProps>({});
 
 export default ({ children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
