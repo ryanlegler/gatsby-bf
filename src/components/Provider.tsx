@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Global, css } from "@emotion/core";
+import { Global, css } from "@emotion/react";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../gatsby-plugin-theme-ui";
 

@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { Box, jsx, SxStyleProp } from "theme-ui";
+import { Box, jsx } from "theme-ui";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { bgImageSx } from "../sx/utils";
 import React from "react";
 import styled from "@emotion/styled";
-import { Global } from "@emotion/core";
+import { Global } from "@emotion/react";
 import { Navicon } from "@emotion-icons/evil/Navicon";
 import { Close } from "@emotion-icons/evil/Close";
 import { MobileNavContext } from "./Provider";

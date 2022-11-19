@@ -70,7 +70,7 @@ const IndexPage = ({ data }) => {
             }}
         >
             <Carousel
-                easing="easeCubicInOut"
+                // easing="easeCubicInOut"
                 speed={1500}
                 // heightMode="current"
                 wrapAround

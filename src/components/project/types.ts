@@ -5,7 +5,7 @@ export type ProjectInnerProps = {
     setSlideIndex: (index: number) => void;
     nextItemIndex?: number;
     projects?: any;
-    projectName?: string;
+    name?: string;
     description: any;
     category?: any;
     descriptionLink;
