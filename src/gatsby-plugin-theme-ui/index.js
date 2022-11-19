@@ -3,7 +3,7 @@ export default {
     radii: [0, 10, 20],
     sizes: [0, 1, 10, 20, 25, 100, 200, 300, 500, 975, 1440],
     colors: {
-        background: "#666",
+        background: "#fff",
         highlight: "magenta",
         primary: "#333",
         neutral: "#555",

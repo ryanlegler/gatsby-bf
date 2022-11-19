@@ -9,7 +9,7 @@ const Category = (props) => {
     const { location, pageContext } = props;
     const { categories, projects } = pageContext;
 
-    console.log("categories", categories);
+    console.log("location", location);
 
     return (
         <Layout>
@@ -29,7 +29,7 @@ const Category = (props) => {
                     return (
                         <Link
                             key={index}
-                            to={`${location.pathname}/${slug(item?.slug || "")}`}
+                            to={`${location.pathname}${slug(item?.slug || "")}`}
                             style={{
                                 color: `white`,
                                 textDecoration: `none`,
@@ -51,7 +51,7 @@ const Category = (props) => {
                     return (
                         <Link
                             key={index}
-                            to={`${location.pathname}/${slug(item.slug)}`}
+                            to={`${location.pathname}${slug(item.slug)}`}
                             style={{
                                 color: `white`,
                                 textDecoration: `none`,
