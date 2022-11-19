@@ -1,10 +1,10 @@
 /** @jsx jsx */
+import * as React from "react";
 import { jsx } from "theme-ui";
 import Layout from "../components/Layout";
-import * as React from "react";
-
 import { ProjectInner } from "../components/project/projectInner";
-
+import SEO from "../components/seo";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 const Project = (props) => {
     const { project = {}, projects, category, autoplay } = props.pageContext;
     const { images = [], name = "", description, descriptionLink, descriptionLinkImage } = project;
@@ -26,9 +26,14 @@ const Project = (props) => {
         descriptionLinkImage,
         category,
     };
+
+    const resolvedDescription =
+        description?.raw && documentToPlainTextString(JSON.parse(description?.raw));
+
     return (
         <Layout>
             <ProjectInner {...innerProps} />
+            <SEO description={resolvedDescription} />
         </Layout>
     );
 };

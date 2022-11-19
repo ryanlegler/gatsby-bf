@@ -66,13 +66,13 @@ const Header = () => {
 
     const isMobile = useBreakpointIndex() <= 2;
 
-    const hamburgerSx: SxStyleProp = {
+    const hamburgerSx = {
         display: ["block", "block", "none"],
         position: "relative",
         zIndex: [1000],
         color: "medium",
     };
-    const navSx: SxStyleProp = {
+    const navSx = {
         display: navOpen ? ["flex", "flex", "flex"] : ["none", "none", "flex"],
         flexDirection: ["column", "column", "row"],
         alignItems: ["center"],

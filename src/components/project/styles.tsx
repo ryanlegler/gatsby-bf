@@ -33,7 +33,7 @@ export const controlsWrapStyles = {
 };
 
 export const controlsStyles = {
-    marginBottom: "-35px",
+    marginBottom: "-55px",
     display: "flex",
     justifyContent: "flex-end",
     mr: [2, 0],

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
 import Header from "./header";
+import SEO from "./seo";
 
 type LayoutProps = {
     children?: any;

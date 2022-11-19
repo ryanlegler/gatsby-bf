@@ -5,7 +5,6 @@ import { graphql } from "gatsby";
 
 import Carousel from "nuka-carousel";
 import Layout from "../components/Layout";
-import { MobileNavContext } from "../components/Provider";
 
 export const query = graphql`
     {

@@ -9,8 +9,6 @@ const Category = (props) => {
     const { location, pageContext } = props;
     const { categories, projects } = pageContext;
 
-    console.log("location", location);
-
     return (
         <Layout>
             <Grid
