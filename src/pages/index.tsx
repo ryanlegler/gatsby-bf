@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 
 import Carousel from "nuka-carousel";
 import Layout from "../components/Layout";
+import { getImageUrl } from "../utils/getImageUrl";
 
 export const query = graphql`
     {
@@ -68,14 +69,7 @@ const IndexPage = ({ data }) => {
                 },
             }}
         >
-            <Carousel
-                // easing="easeCubicInOut"
-                speed={1500}
-                // heightMode="current"
-                wrapAround
-                autoplay
-                pauseOnHover
-            >
+            <Carousel speed={1500} wrapAround autoplay pauseOnHover>
                 {images.map((image, index) => (
                     <div
                         key={index}
@@ -92,7 +86,7 @@ const IndexPage = ({ data }) => {
                                 objectFit: "cover",
                                 height: ["calc(100vh - 78px)", "100%"],
                             }}
-                            src={image.file.url}
+                            src={getImageUrl(image.file.url)}
                         />
                     </div>
                 ))}

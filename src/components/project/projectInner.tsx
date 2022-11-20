@@ -16,6 +16,7 @@ import {
     textSx,
 } from "../../components/project/styles";
 import { ProjectInnerProps } from "./types";
+import { getImageUrl } from "../../utils/getImageUrl";
 
 const IconChevronRight = styled(ArrowRight)``;
 const IconChevronLeft = styled(ArrowLeft)``;
@@ -40,7 +41,8 @@ export function ProjectInner({
                     <Carousel
                         autoplay={autoplay}
                         slideIndex={slideIndex}
-                        wrapAround
+                        wrapAround={images?.length > 1}
+                        disableEdgeSwiping={images?.length <= 1}
                         renderCenterRightControls={() => <></>}
                         renderCenterLeftControls={() => <></>}
                         renderTopLeftControls={({ previousSlide, nextSlide, currentSlide }) => {
@@ -70,7 +72,7 @@ export function ProjectInner({
                                                         }}
                                                         onClick={() => setSlideIndex(index)}
                                                         key={index}
-                                                        src={image.file.url}
+                                                        src={getImageUrl(image.file.url)} // should i scale these thumbs?
                                                     />
                                                 ))}
                                             </Box>
@@ -112,15 +114,6 @@ export function ProjectInner({
                             );
                         }}
                     >
-                        {/* {images?.map((image, index) => (
-                            <Box key={index} style={{ flex: "0 0 100%" }}>
-                                <img
-                                    style={{ objectFit: "cover", width: "100%" }}
-                                    src={image.file.url}
-                                />
-                            </Box>
-                        ))}
-                         */}
                         {images.map((image, index) => (
                             <div
                                 key={index}
@@ -137,7 +130,7 @@ export function ProjectInner({
                                         objectFit: "cover",
                                         height: ["calc(100vh - 78px)", "100%"],
                                     }}
-                                    src={image.file.url}
+                                    src={getImageUrl(image.file.url)}
                                 />
                             </div>
                         ))}

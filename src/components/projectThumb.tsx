@@ -24,7 +24,7 @@ const ProjectThumb = ({ url, title }) => {
             <Box
                 data-id="img"
                 sx={{
-                    backgroundImage: `url(${url})`,
+                    backgroundImage: `url(https://res.cloudinary.com/dyx93rh2p/image/fetch/c_fit,w_325,h_325/f_auto/https:${url})`,
                     ...bgImageSx,
                     ...fullbleedSx,
                     transform: "scale(1)",
