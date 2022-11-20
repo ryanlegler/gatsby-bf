@@ -17,6 +17,7 @@ import {
 } from "../../components/project/styles";
 import { ProjectInnerProps } from "./types";
 import { getImageUrl } from "../../utils/getImageUrl";
+import { Image } from "theme-ui";
 
 const IconChevronRight = styled(ArrowRight)``;
 const IconChevronLeft = styled(ArrowLeft)``;
@@ -51,6 +52,7 @@ export function ProjectInner({
                                     {images?.length > 1 ? (
                                         <Box sx={controlsStyles}>
                                             <NavButton
+                                                aria-label="Previous Image"
                                                 as="button"
                                                 sx={navButtonStyles}
                                                 onClick={previousSlide}
@@ -60,8 +62,7 @@ export function ProjectInner({
 
                                             <Box>
                                                 {images.map((image, index) => (
-                                                    <Box
-                                                        as={"img"}
+                                                    <Image
                                                         sx={{
                                                             opacity: `${
                                                                 index === currentSlide ? 1 : 0.4
@@ -83,6 +84,7 @@ export function ProjectInner({
                                             </Box>
 
                                             <NavButton
+                                                aria-label="Next Image"
                                                 as="button"
                                                 sx={{
                                                     color: "medium",
@@ -129,8 +131,7 @@ export function ProjectInner({
                                     justifyContent: "center",
                                 }}
                             >
-                                <Box
-                                    as={"img"}
+                                <Image
                                     sx={{
                                         objectFit: "cover",
                                         height: ["calc(100vh - 78px)", "100%"],

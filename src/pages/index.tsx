@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import { getImageUrl } from "../utils/getImageUrl";
 import SEO from "../components/seo";
 
+import { Image } from "theme-ui";
 export const query = graphql`
     {
         allContentfulHomePage {
@@ -55,8 +56,7 @@ const IndexPage = ({ data }) => {
                             justifyContent: "center",
                         }}
                     >
-                        <Box
-                            as={"img"}
+                        <Image
                             sx={{
                                 objectFit: "cover",
                                 height: ["calc(100vh - 78px)", "100%"],
