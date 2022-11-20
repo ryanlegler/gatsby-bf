@@ -6,40 +6,15 @@ import { graphql } from "gatsby";
 import Carousel from "nuka-carousel";
 import Layout from "../components/Layout";
 import { getImageUrl } from "../utils/getImageUrl";
+import SEO from "../components/seo";
 
 export const query = graphql`
     {
-        allContentfulCategory {
-            edges {
-                node {
-                    name
-                }
-            }
-        }
         allContentfulHomePage {
             nodes {
-                id
-                seo {
-                    id
-                    title
-                    description
-                    keywords
-                }
-                logo {
-                    file {
-                        url
-                    }
-                }
                 images {
-                    id
                     file {
                         url
-                        details {
-                            image {
-                                height
-                                width
-                            }
-                        }
                     }
                 }
             }
@@ -87,10 +62,12 @@ const IndexPage = ({ data }) => {
                                 height: ["calc(100vh - 78px)", "100%"],
                             }}
                             src={getImageUrl(image.file.url)}
+                            alt={image.description || `Carousel Image ${index + 1}`}
                         />
                     </div>
                 ))}
             </Carousel>
+            <SEO />
         </Layout>
     );
 };

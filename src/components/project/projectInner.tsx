@@ -72,6 +72,11 @@ export function ProjectInner({
                                                         }}
                                                         onClick={() => setSlideIndex(index)}
                                                         key={index}
+                                                        alt={
+                                                            image?.description ||
+                                                            `${name ||
+                                                                ""} project thumbnail ${index + 1}`
+                                                        }
                                                         src={getImageUrl(image.file.url)} // should i scale these thumbs?
                                                     />
                                                 ))}
@@ -131,6 +136,10 @@ export function ProjectInner({
                                         height: ["calc(100vh - 78px)", "100%"],
                                     }}
                                     src={getImageUrl(image.file.url)}
+                                    alt={
+                                        image?.description ||
+                                        `${name || ""} project image ${index + 1}`
+                                    }
                                 />
                             </div>
                         ))}
@@ -170,6 +179,10 @@ export function ProjectInner({
                         <img
                             style={{ objectFit: "cover", height: "50px" }}
                             src={descriptionLinkImage.file.url}
+                            alt={
+                                descriptionLinkImage?.description ||
+                                `${name || ""} Description Link Image`
+                            }
                         />
                     </a>
                 )}

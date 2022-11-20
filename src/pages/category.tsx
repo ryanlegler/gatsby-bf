@@ -3,11 +3,12 @@ import { Grid, jsx } from "theme-ui";
 import { Link } from "gatsby";
 import ProjectThumb from "../components/projectThumb";
 import Layout from "../components/Layout";
+import SEO from "../components/seo";
 const slug = require("slug");
 
 const Category = (props) => {
     const { location, pageContext } = props;
-    const { categories, projects } = pageContext;
+    const { categories, projects, category } = pageContext;
 
     return (
         <Layout>
@@ -65,6 +66,7 @@ const Category = (props) => {
                     );
                 })}
             </Grid>
+            <SEO />
         </Layout>
     );
 };
