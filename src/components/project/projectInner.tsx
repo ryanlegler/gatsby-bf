@@ -39,75 +39,78 @@ export function ProjectInner({
                 <Box sx={carouselWrapStyles}>
                     <Carousel
                         autoplay={autoplay}
-                        afterSlide={(index) => setSlideIndex(index)}
                         slideIndex={slideIndex}
                         wrapAround
                         renderCenterRightControls={() => <></>}
                         renderCenterLeftControls={() => <></>}
-                        renderTopLeftControls={({ previousSlide, nextSlide }) => (
-                            <Box sx={controlsWrapStyles}>
-                                {images?.length > 1 ? (
-                                    <Box sx={controlsStyles}>
-                                        <NavButton
-                                            as="button"
-                                            sx={navButtonStyles}
-                                            onClick={previousSlide}
-                                        >
-                                            <IconChevronLeft />
-                                        </NavButton>
-
-                                        <Box>
-                                            {images.map((image, index) => (
-                                                <Box
-                                                    as={"img"}
-                                                    sx={{
-                                                        opacity: `${
-                                                            index === slideIndex ? 1 : 0.4
-                                                        }`,
-                                                        height: ["25px", "30px"],
-                                                        pointerEvents: "initial",
-                                                        cursor: "pointer",
-                                                    }}
-                                                    onClick={() => setSlideIndex(index)}
-                                                    key={index}
-                                                    src={image.file.url}
-                                                />
-                                            ))}
-                                        </Box>
-
-                                        <NavButton
-                                            as="button"
-                                            sx={{
-                                                color: "medium",
-                                                "&:hover": {
-                                                    color: "dark",
-                                                },
-                                            }}
-                                            onClick={nextSlide}
-                                        >
-                                            {" "}
-                                            <IconChevronRight />{" "}
-                                        </NavButton>
-
-                                        {category && nextItemIndex && projects?.[nextItemIndex] && (
-                                            <Link
-                                                to={`/${category?.slug}/${projects[nextItemIndex].slug}`}
-                                                sx={{
-                                                    textDecoration: `none`,
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    pointerEvents: "initial",
-                                                    ml: 3,
-                                                    ...textSx,
-                                                }}
+                        renderTopLeftControls={({ previousSlide, nextSlide, currentSlide }) => {
+                            return (
+                                <Box sx={controlsWrapStyles}>
+                                    {images?.length > 1 ? (
+                                        <Box sx={controlsStyles}>
+                                            <NavButton
+                                                as="button"
+                                                sx={navButtonStyles}
+                                                onClick={previousSlide}
                                             >
-                                                <Box>Next Project</Box>
-                                            </Link>
-                                        )}
-                                    </Box>
-                                ) : null}
-                            </Box>
-                        )}
+                                                <IconChevronLeft />
+                                            </NavButton>
+
+                                            <Box>
+                                                {images.map((image, index) => (
+                                                    <Box
+                                                        as={"img"}
+                                                        sx={{
+                                                            opacity: `${
+                                                                index === currentSlide ? 1 : 0.4
+                                                            }`,
+                                                            height: ["25px", "30px"],
+                                                            pointerEvents: "initial",
+                                                            cursor: "pointer",
+                                                        }}
+                                                        onClick={() => setSlideIndex(index)}
+                                                        key={index}
+                                                        src={image.file.url}
+                                                    />
+                                                ))}
+                                            </Box>
+
+                                            <NavButton
+                                                as="button"
+                                                sx={{
+                                                    color: "medium",
+                                                    "&:hover": {
+                                                        color: "dark",
+                                                    },
+                                                }}
+                                                onClick={nextSlide}
+                                            >
+                                                {" "}
+                                                <IconChevronRight />{" "}
+                                            </NavButton>
+
+                                            {category &&
+                                                nextItemIndex &&
+                                                projects?.[nextItemIndex] && (
+                                                    <Link
+                                                        to={`/${category?.slug}/${projects[nextItemIndex].slug}`}
+                                                        sx={{
+                                                            textDecoration: `none`,
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                            pointerEvents: "initial",
+                                                            ml: 3,
+                                                            ...textSx,
+                                                        }}
+                                                    >
+                                                        <Box>Next Project</Box>
+                                                    </Link>
+                                                )}
+                                        </Box>
+                                    ) : null}
+                                </Box>
+                            );
+                        }}
                     >
                         {/* {images?.map((image, index) => (
                             <Box key={index} style={{ flex: "0 0 100%" }}>
