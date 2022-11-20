@@ -36,6 +36,7 @@ export const controlsStyles = {
     marginBottom: "-55px",
     display: "flex",
     justifyContent: "flex-end",
+    pointerEvents: "auto !important",
     mr: [2, 0],
     "> * + *": {
         marginLeft: "10px !important",

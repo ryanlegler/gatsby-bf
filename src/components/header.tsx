@@ -180,6 +180,7 @@ const Header = () => {
                         height: "100%",
                         display: "flex",
                         justifyContent: "center",
+                        pointerEvents: "none !important",
                     },
                 }}
             />
