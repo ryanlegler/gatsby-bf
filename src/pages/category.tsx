@@ -17,10 +17,7 @@ const Category = (props) => {
                     margin: " 0 auto",
                     width: "100%",
                     gridGap: [0, 0, 0],
-                    gridTemplateColumns: [
-                        "repeat(auto-fill, minmax(200px, 2fr))",
-                        "repeat(auto-fill, minmax(250px, 3fr))",
-                    ],
+                    gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
                 }}
             >
                 {categories?.map((item, index) => {
