@@ -3,7 +3,7 @@ import React from "react";
 import { Box, jsx } from "theme-ui";
 import { graphql } from "gatsby";
 
-import Carousel from "nuka-carousel";
+import Carousel, { EasingFunction } from "nuka-carousel";
 import Layout from "../components/Layout";
 import { getImageUrl } from "../utils/getImageUrl";
 import SEO from "../components/seo";
@@ -45,7 +45,7 @@ const IndexPage = ({ data }) => {
                 },
             }}
         >
-            <Carousel speed={1500} wrapAround autoplay pauseOnHover>
+            <Carousel wrapAround autoplay>
                 {images.map((image, index) => (
                     <div
                         key={index}
