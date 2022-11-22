@@ -50,7 +50,7 @@ const IndexPage = ({ data }) => {
                     <div
                         key={index}
                         style={{
-                            aspectRatio: "16 / 9",
+                            aspectRatio: "377 / 219",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -59,6 +59,7 @@ const IndexPage = ({ data }) => {
                         <Image
                             sx={{
                                 objectFit: "cover",
+                                // height: ["100%"],
                                 height: ["calc(100vh - 78px)", "100%"],
                             }}
                             src={getImageUrl(image.file.url)}
@@ -73,16 +74,3 @@ const IndexPage = ({ data }) => {
 };
 
 export default IndexPage;
-
-// <Box sx={{
-//     justifyContent: "center",
-//     display: "flex",
-//     width: "100%"
-// }}>
-//   <Box sx={{
-//     maxWidth: "1600px",
-//     width: "100%",
-//     display: "flex",
-//     flexDirection: "column",
-//     position: "relative",
-// }}>

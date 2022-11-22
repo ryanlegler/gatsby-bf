@@ -125,7 +125,7 @@ export function ProjectInner({
                             <div
                                 key={index}
                                 style={{
-                                    aspectRatio: "16 / 9",
+                                    aspectRatio: "377 / 219",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
@@ -134,7 +134,8 @@ export function ProjectInner({
                                 <Image
                                     sx={{
                                         objectFit: "cover",
-                                        height: ["calc(100vh - 78px)", "100%"],
+                                        height: "100%",
+                                        // height: ["calc(100vh - 78px)", "100%"],
                                     }}
                                     src={getImageUrl(image.file.url)}
                                     alt={
@@ -159,14 +160,14 @@ export function ProjectInner({
                 </Box>
             )}
             <Box sx={{ p: [3, 0], maxWidth: 9, margin: "0 auto", width: "100%" }}>
-                <Box sx={{ fontSize: "14px", marginTop: "50px" }}>
+                <Box sx={{ fontSize: 1, marginTop: "50px" }}>
                     {name ? <strong>{name}</strong> : null}
                 </Box>
 
                 {description?.raw && (
                     <Box
                         sx={{
-                            fontSize: "14px",
+                            fontSize: 1,
                             lineHeight: "22px",
                             color: "medium",
                         }}

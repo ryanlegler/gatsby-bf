@@ -87,7 +87,7 @@ const Header = () => {
         backgroundColor: ["white", "white", "transparent"],
         "a + a": {
             mt: [2, 2, 0],
-            ml: [0, 0, 3],
+            ml: [0, 0, 2],
         },
     };
 
@@ -151,7 +151,7 @@ const Header = () => {
                                         "&:visited": {
                                             color: "medium",
                                         },
-                                        fontSize: "14px",
+                                        fontSize: 0,
                                         fontFamily: "body",
                                         fontWeight: "bold",
                                         letterSpacing: "1px",
