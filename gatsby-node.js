@@ -36,6 +36,7 @@ descriptionLinkImage {
 ${thumbnailFragment}
 images {
     title
+    description
     file {
         url
     }

@@ -10,6 +10,7 @@ import { ArrowRight } from "@emotion-icons/bootstrap/ArrowRight";
 import {
     carouselWrapStyles,
     controlsStyles,
+    footnoteStyles,
     controlsWrapStyles,
     NavButton,
     navButtonStyles,
@@ -47,8 +48,15 @@ export function ProjectInner({
                         renderCenterRightControls={() => <></>}
                         renderCenterLeftControls={() => <></>}
                         renderTopLeftControls={({ previousSlide, nextSlide, currentSlide }) => {
+                            console.log("currentSlide", images?.[currentSlide]);
+
+                            const image = images?.[currentSlide];
                             return (
                                 <Box sx={controlsWrapStyles}>
+                                    <Box sx={footnoteStyles}>
+                                        {image.description && <span>{image.description}</span>}
+                                    </Box>
+
                                     {images?.length > 1 ? (
                                         <Box sx={controlsStyles}>
                                             <NavButton
@@ -159,8 +167,16 @@ export function ProjectInner({
                     ></Box>
                 </Box>
             )}
-            <Box sx={{ p: [3, 0], maxWidth: 9, margin: "0 auto", width: "100%" }}>
-                <Box sx={{ fontSize: 1, marginTop: "50px" }}>
+            <Box
+                sx={{
+                    p: [3, 0],
+                    // SIZES - PROJECT DESCRIPTION
+                    maxWidth: 9,
+                    margin: "0 auto",
+                    width: "100%",
+                }}
+            >
+                <Box sx={{ fontSize: 1, marginTop: "60px" }}>
                     {name ? <strong>{name}</strong> : null}
                 </Box>
 

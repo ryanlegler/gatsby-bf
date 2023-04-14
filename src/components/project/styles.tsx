@@ -24,12 +24,17 @@ export const textSx = {
     mt: "-2px",
 };
 
+// SIZES - CONTROLS WIDTH
 export const controlsWrapStyles = {
-    maxWidth: "975px",
+    // maxWidth: "975px",
+    // maxWidth: "865px",
+    maxWidth: 10,
     width: "100%",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     alignItems: "flex-end",
+    color: "medium",
+    fontSize: "11px",
 };
 
 export const controlsStyles = {
@@ -41,6 +46,12 @@ export const controlsStyles = {
     "> * + *": {
         marginLeft: "10px !important",
     },
+};
+
+export const footnoteStyles = {
+    marginBottom: "-25px",
+    display: "flex",
+    justifyContent: "flex-start",
 };
 
 export const navButtonStyles = {

@@ -99,6 +99,7 @@ const Header = () => {
                 display: "flex",
                 position: "relative",
                 width: "100%",
+                // SIZES - HEADER WIDTH
                 maxWidth: 9,
                 margin: "0 auto",
                 px: [21, 0, 0],
