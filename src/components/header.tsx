@@ -108,7 +108,7 @@ const Header = () => {
             <Box
                 sx={{
                     flex: "1 1 auto",
-                    pt: [2, 6],
+                    pt: [2, 7],
                     pb: [2, 3],
                 }}
             >

@@ -28,7 +28,8 @@ export const textSx = {
 export const controlsWrapStyles = {
     // maxWidth: "975px",
     // maxWidth: "865px",
-    maxWidth: 10,
+    // maxWidth: 10,
+    maxWidth: 9,
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
