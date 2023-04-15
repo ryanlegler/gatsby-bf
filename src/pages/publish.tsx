@@ -5,7 +5,7 @@ const manageID = process.env.GATSBY_MANAGE_ID;
 const Publish = ({ location }) => {
     const searchParams = new URLSearchParams(location.search)?.get("auth");
     console.log("searchParams", searchParams);
-    console.log("manageID", manageID);
+    console.log("GATSBY_MANAGE_ID", manageID);
 
     const url = "https://api.netlify.com/build_hooks/5f8d058b463aed0087a7101d";
     const handlePublish = () => {
