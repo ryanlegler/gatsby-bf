@@ -1,6 +1,7 @@
 import * as React from "react";
 
-const manageID = process.env.MANAGE_ID;
+const manageID = process.env.GATSBY_MANAGE_ID;
+
 const Publish = ({ location }) => {
     const searchParams = new URLSearchParams(location.search)?.get("auth");
     console.log("searchParams", searchParams);
