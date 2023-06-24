@@ -38,11 +38,15 @@ export function ProjectInner({
     category,
 }: ProjectInnerProps) {
     const isMobile = useBreakpointIndex() === 0;
+    const showPagination = images?.length > 1 && !isMobile;
 
     return (
         <React.Fragment>
             {images && !!images.length && (
-                <Box sx={carouselWrapStyles} className={`${isMobile ? "isMobile" : ""}`}>
+                <Box
+                    sx={carouselWrapStyles}
+                    className={`${showPagination ? "show_pagination" : ""}`}
+                >
                     <Carousel
                         autoplay={autoplay}
                         slideIndex={slideIndex}

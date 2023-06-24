@@ -152,8 +152,8 @@ const Header = () => {
                                         "&:visited": {
                                             color: "medium",
                                         },
-                                        fontSize: "16px",
-                                        lineHeight: "1.3",
+                                        fontSize: ["16px", 0],
+                                        lineHeight: ["1.3", 1],
                                         fontFamily: "body",
                                         fontWeight: "bold",
                                         letterSpacing: "1px",

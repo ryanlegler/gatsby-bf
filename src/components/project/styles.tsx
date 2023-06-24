@@ -11,14 +11,14 @@ export const carouselWrapStyles = {
     ".slider": {
         paddingBottom: ["5px", "10px"],
     },
-    "&.isMobile .slider-control-bottomcenter": {
+    "&.show_pagination .slider-control-bottomcenter": {
         display: "block",
-        bottom: "-75px",
-        position: "absolute",
-        left: 3,
     },
     ".slider-control-bottomcenter": {
         display: "none",
+        bottom: "-75px",
+        position: "absolute",
+        left: 3,
         li: {
             "> * + *": {
                 marginLeft: "5px !important",
@@ -30,8 +30,6 @@ export const carouselWrapStyles = {
                 opacity: "0.9 !important",
             },
         },
-        // bottom: "-40px",
-        // position: "relative",
     },
 };
 
