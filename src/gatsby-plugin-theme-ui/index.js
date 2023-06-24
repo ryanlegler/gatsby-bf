@@ -14,7 +14,8 @@ export default {
         white: "#ffffff",
         lightest: "#f9f9f9",
         light: "#f4f4f4",
-        medium: "#909090", // grey text
+        // medium: "#909090", // grey text too light for A11Y
+        medium: "#757575", // grey text
         dark: "#505050",
         darkest: "#070707",
         overlay: "rgba(0, 0, 0, 0.5)",
