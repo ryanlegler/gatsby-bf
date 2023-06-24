@@ -33,6 +33,7 @@ const IndexPage = ({ data }) => {
     };
 
     const start = getNumberBetween(0, images.length - 1);
+    const resolvedImages = [...images.slice(start, images.length), ...images.slice(0, start)];
 
     return (
         <Layout
@@ -52,8 +53,13 @@ const IndexPage = ({ data }) => {
                 },
             }}
         >
-            <Carousel wrapAround autoplay slideIndex={start} autoplayInterval={autoplayInterval}>
-                {images.map((image, index) => (
+            <Carousel
+                wrapAround
+                autoplay
+                // slideIndex={start}
+                autoplayInterval={autoplayInterval}
+            >
+                {resolvedImages.map((image, index) => (
                     <div
                         key={index}
                         style={{
