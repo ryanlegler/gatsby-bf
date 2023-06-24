@@ -133,7 +133,8 @@ const Header = () => {
                         <Box
                             sx={{
                                 ...bgImageSx,
-                                letterSpacing: "-1000em",
+                                // letterSpacing: "-1000em",
+                                textIndent: "-1000em",
                                 flex: "0 0 auto",
                                 height: "21px",
                                 backgroundPosition: "left -1px",
