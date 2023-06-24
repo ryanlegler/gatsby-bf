@@ -38,7 +38,7 @@ export function ProjectInner({
     category,
 }: ProjectInnerProps) {
     const isMobile = useBreakpointIndex() === 0;
-    const showPagination = images?.length > 1 && !isMobile;
+    const showPagination = images?.length > 1 && isMobile;
 
     return (
         <React.Fragment>
