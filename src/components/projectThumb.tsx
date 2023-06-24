@@ -3,7 +3,6 @@ import { Box, jsx } from "theme-ui";
 import { bgImageSx, flexCenterMiddle, fullbleedSx } from "../sx/utils";
 
 const ProjectThumb = ({ url, title, showNameInDefaultState }) => {
-    console.log("showNameInDefaultState", showNameInDefaultState);
     return (
         <Box
             sx={{

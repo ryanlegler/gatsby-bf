@@ -19,6 +19,13 @@ const Header = () => {
     const data = useStaticQuery(
         graphql`
             query {
+                site {
+                    siteMetadata {
+                        title
+                        description
+                        author
+                    }
+                }
                 allContentfulHomePage {
                     nodes {
                         id
@@ -56,10 +63,12 @@ const Header = () => {
             }
         `
     );
-    const { contentfulNavigationMenu, allContentfulHomePage } = data;
 
-    const { pages } = contentfulNavigationMenu ?? {};
-    const { images, logo, seo } = allContentfulHomePage.nodes[0];
+    const { contentfulNavigationMenu, allContentfulHomePage, site } = data || {};
+    const { description } = site?.siteMetadata || {};
+    const { pages } = contentfulNavigationMenu || {};
+    const { logo } = allContentfulHomePage.nodes?.[0] || {};
+
     const { url } = logo.file;
 
     const { open: navOpen, toggleOpen } = React.useContext(MobileNavContext) || {};
@@ -124,8 +133,7 @@ const Header = () => {
                         <Box
                             sx={{
                                 ...bgImageSx,
-                                textIndent: "-99999px",
-                                fontSize: 0.01,
+                                letterSpacing: "-1000em",
                                 flex: "0 0 auto",
                                 height: "21px",
                                 backgroundPosition: "left -1px",
@@ -133,7 +141,7 @@ const Header = () => {
                                 backgroundImage: `url(${url})`,
                             }}
                         >
-                            {url}
+                            {description}
                         </Box>
                     </Link>
 

@@ -43,9 +43,9 @@ function SEO(
 
     return (
         <Helmet
-            // htmlAttributes={{
-            //     lang,
-            // }}
+            htmlAttributes={{
+                lang: "en",
+            }}
             title={resolvedTitle}
             // titleTemplate={`%s | ${title}`}
             meta={[

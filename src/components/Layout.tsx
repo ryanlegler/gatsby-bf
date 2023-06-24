@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { Box, jsx } from "theme-ui";
+import { Box, ThemeUIStyleObject, jsx } from "theme-ui";
 import Header from "./header";
 
 type LayoutProps = {
-    children?: any;
-    containerSx?: any;
+    children?: React.ReactNode;
+    containerSx?: ThemeUIStyleObject;
 };
 const Layout = ({ children, containerSx = {} }: LayoutProps) => {
     return (
