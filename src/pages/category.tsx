@@ -33,6 +33,7 @@ const Category = (props) => {
                             }}
                         >
                             <ProjectThumb
+                                showNameInDefaultState={item.showNameInDefaultState}
                                 url={
                                     item && item.thumbnail && item.thumbnail.file.url
                                         ? item.thumbnail.file.url
@@ -55,6 +56,7 @@ const Category = (props) => {
                             }}
                         >
                             <ProjectThumb
+                                showNameInDefaultState={item.showNameInDefaultState}
                                 url={
                                     item && item.thumbnail && item.thumbnail.file.url
                                         ? item.thumbnail.file.url

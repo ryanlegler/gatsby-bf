@@ -109,7 +109,7 @@ const Header = () => {
                 sx={{
                     flex: "1 1 auto",
                     pt: [2, 7],
-                    pb: [2, 3],
+                    pb: [2, 6],
                 }}
             >
                 <Box
@@ -152,7 +152,8 @@ const Header = () => {
                                         "&:visited": {
                                             color: "medium",
                                         },
-                                        fontSize: 0,
+                                        fontSize: "16px",
+                                        lineHeight: "1.3",
                                         fontFamily: "body",
                                         fontWeight: "bold",
                                         letterSpacing: "1px",
@@ -164,7 +165,7 @@ const Header = () => {
                                     key={page.slug}
                                     to={`/${page.slug}`}
                                 >
-                                    {slug(page.name)}
+                                    {slug(page.slug)}
                                 </Link>
                             ))}
                     </Box>

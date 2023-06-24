@@ -24,8 +24,15 @@ export const query = graphql`
 `;
 
 const IndexPage = ({ data }) => {
+    const autoplayInterval = 5000;
     const { allContentfulHomePage } = data;
     const { images } = allContentfulHomePage.nodes?.[0] || {};
+
+    const getNumberBetween = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    const start = getNumberBetween(0, images.length - 1);
 
     return (
         <Layout
@@ -45,7 +52,7 @@ const IndexPage = ({ data }) => {
                 },
             }}
         >
-            <Carousel wrapAround autoplay>
+            <Carousel wrapAround autoplay slideIndex={start} autoplayInterval={autoplayInterval}>
                 {images.map((image, index) => (
                     <div
                         key={index}
@@ -59,8 +66,7 @@ const IndexPage = ({ data }) => {
                         <Image
                             sx={{
                                 objectFit: "cover",
-                                // height: ["100%"],
-                                height: ["calc(100vh - 78px)", "100%"],
+                                height: ["calc(100vh - 62px)", "100%"],
                             }}
                             src={getImageUrl(image.file.url)}
                             alt={image.description || `Carousel Image ${index + 1}`}

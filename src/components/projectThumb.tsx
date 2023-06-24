@@ -2,7 +2,8 @@
 import { Box, jsx } from "theme-ui";
 import { bgImageSx, flexCenterMiddle, fullbleedSx } from "../sx/utils";
 
-const ProjectThumb = ({ url, title }) => {
+const ProjectThumb = ({ url, title, showNameInDefaultState }) => {
+    console.log("showNameInDefaultState", showNameInDefaultState);
     return (
         <Box
             sx={{
@@ -11,6 +12,10 @@ const ProjectThumb = ({ url, title }) => {
                 paddingBottom: "100%",
                 height: "0",
                 overflow: "hidden",
+                "[data-id='overlay']:not(:hover)": {
+                    opacity: showNameInDefaultState ? 1 : 0,
+                    backgroundColor: "transparent",
+                },
                 "&:hover": {
                     "[data-id='overlay']": {
                         opacity: 1,
@@ -42,7 +47,7 @@ const ProjectThumb = ({ url, title }) => {
                     ...fullbleedSx,
                     ...flexCenterMiddle,
                     backgroundColor: "overlay",
-                    transition: "opacity 300ms",
+                    transition: "all 300ms",
                 }}
             >
                 {title}

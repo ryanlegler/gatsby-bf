@@ -19,6 +19,7 @@ import {
 import { ProjectInnerProps } from "./types";
 import { getImageUrl } from "../../utils/getImageUrl";
 import { Image } from "theme-ui";
+import { useBreakpointIndex } from "@theme-ui/match-media";
 
 const IconChevronRight = styled(ArrowRight)``;
 const IconChevronLeft = styled(ArrowLeft)``;
@@ -36,10 +37,12 @@ export function ProjectInner({
     descriptionLinkImage,
     category,
 }: ProjectInnerProps) {
+    const isMobile = useBreakpointIndex() === 0;
+
     return (
         <React.Fragment>
             {images && !!images.length && (
-                <Box sx={carouselWrapStyles}>
+                <Box sx={carouselWrapStyles} className={`${isMobile ? "isMobile" : ""}`}>
                     <Carousel
                         autoplay={autoplay}
                         slideIndex={slideIndex}
@@ -48,8 +51,6 @@ export function ProjectInner({
                         renderCenterRightControls={() => <></>}
                         renderCenterLeftControls={() => <></>}
                         renderTopLeftControls={({ previousSlide, nextSlide, currentSlide }) => {
-                            console.log("currentSlide", images?.[currentSlide]);
-
                             const image = images?.[currentSlide];
                             return (
                                 <Box sx={controlsWrapStyles}>
@@ -57,7 +58,7 @@ export function ProjectInner({
                                         {image.description && <span>{image.description}</span>}
                                     </Box>
 
-                                    {images?.length > 1 ? (
+                                    {!isMobile && images?.length > 1 ? (
                                         <Box sx={controlsStyles}>
                                             <NavButton
                                                 aria-label="Previous Image"
@@ -106,7 +107,7 @@ export function ProjectInner({
                                                 <IconChevronRight />{" "}
                                             </NavButton>
 
-                                            {category &&
+                                            {/* {category &&
                                                 nextItemIndex &&
                                                 projects?.[nextItemIndex] && (
                                                     <Link
@@ -122,7 +123,7 @@ export function ProjectInner({
                                                     >
                                                         <Box>Next Project</Box>
                                                     </Link>
-                                                )}
+                                                )} */}
                                         </Box>
                                     ) : null}
                                 </Box>
@@ -176,7 +177,7 @@ export function ProjectInner({
                     width: "100%",
                 }}
             >
-                <Box sx={{ fontSize: 1, marginTop: "60px" }}>
+                <Box sx={{ fontSize: 1, marginTop: "75px" }}>
                     {name ? <strong>{name}</strong> : null}
                 </Box>
 

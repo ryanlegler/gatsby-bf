@@ -11,8 +11,27 @@ export const carouselWrapStyles = {
     ".slider": {
         paddingBottom: ["5px", "10px"],
     },
+    "&.isMobile .slider-control-bottomcenter": {
+        display: "block",
+        bottom: "-75px",
+        position: "absolute",
+        left: 3,
+    },
     ".slider-control-bottomcenter": {
         display: "none",
+        li: {
+            "> * + *": {
+                marginLeft: "5px !important",
+            },
+            button: {
+                opacity: "0.3 !important",
+            },
+            "&.active button": {
+                opacity: "0.9 !important",
+            },
+        },
+        // bottom: "-40px",
+        // position: "relative",
     },
 };
 
@@ -53,6 +72,7 @@ export const footnoteStyles = {
     marginBottom: "-25px",
     display: "flex",
     justifyContent: "flex-start",
+    ml: [3, 0],
 };
 
 export const navButtonStyles = {

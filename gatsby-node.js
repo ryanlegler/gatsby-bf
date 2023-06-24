@@ -95,9 +95,11 @@ exports.createPages = ({ graphql, actions }) => {
                         node {
                             name
                             slug
+                            showNameInDefaultState
                             subCategory {
                                 name
                                 slug
+                                showNameInDefaultState
                                 ${thumbnailFragment}
                                 projects {
                                   ${projectFragment}
