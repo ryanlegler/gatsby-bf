@@ -28,13 +28,16 @@ const IndexPage = ({ data }) => {
     const { allContentfulHomePage } = data;
     const { images } = allContentfulHomePage.nodes?.[0] || {};
 
+    const isClient = typeof window !== "undefined";
+
     const getNumberBetween = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    const start = useMemo(() => getNumberBetween(0, images.length - 1), []);
+    const start = useMemo(() => isClient && getNumberBetween(0, images.length - 1), []);
+
     const resolvedImages = useMemo(
-        () => [...images.slice(start, images.length), ...images.slice(0, start)],
+        () => (start ? [...images.slice(start, images.length), ...images.slice(0, start)] : []),
         [start]
     );
 
