@@ -19,12 +19,13 @@ export const carouselWrapStyles = {
         bottom: "-75px",
         position: "absolute",
         left: 3,
+        "ul > * + *": {
+            marginLeft: "8px !important",
+        },
         li: {
-            "> * + *": {
-                marginLeft: "5px !important",
-            },
             button: {
                 opacity: "0.3 !important",
+                padding: 0,
             },
             "&.active button": {
                 opacity: "0.9 !important",
