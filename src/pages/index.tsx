@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, jsx } from "theme-ui";
 import { graphql } from "gatsby";
 
@@ -32,8 +32,11 @@ const IndexPage = ({ data }) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    const start = getNumberBetween(0, images.length - 1);
-    const resolvedImages = [...images.slice(start, images.length), ...images.slice(0, start)];
+    const start = useMemo(() => getNumberBetween(0, images.length - 1), []);
+    const resolvedImages = useMemo(
+        () => [...images.slice(start, images.length), ...images.slice(0, start)],
+        [start]
+    );
 
     return (
         <Layout
