@@ -14,7 +14,7 @@ const options = {
         [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
     },
     renderText: (text) =>
-        text.split("\n").flatMap((text, i) => [i > 0 && <br key={`br-${text}`} />, text]),
+        text.split("\n").flatMap((text, i) => [i > 0 && <br key={`br-${text}-${i}`} />, text]),
     renderNode: {
         [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
         [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
