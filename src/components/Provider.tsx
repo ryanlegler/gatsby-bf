@@ -6,6 +6,7 @@ import theme from "../gatsby-plugin-theme-ui";
 export type MobileNavContextProps = {
     open?: boolean;
     toggleOpen?: () => void;
+    setIsOpen?: (open: boolean) => void;
 };
 export const MobileNavContext = React.createContext<MobileNavContextProps>({});
 
@@ -15,9 +16,17 @@ export default ({ children }) => {
     const handleToggleOpen = useCallback(() => {
         setIsOpen((prev) => !prev);
     }, [setIsOpen]);
+    const handleSetIsOpen = useCallback(
+        (open: boolean) => {
+            setIsOpen(open);
+        },
+        [setIsOpen]
+    );
 
     return (
-        <MobileNavContext.Provider value={{ open: isOpen, toggleOpen: handleToggleOpen }}>
+        <MobileNavContext.Provider
+            value={{ open: isOpen, setIsOpen: handleSetIsOpen, toggleOpen: handleToggleOpen }}
+        >
             <ThemeProvider theme={theme}>
                 {children}
                 <Global

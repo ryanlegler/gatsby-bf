@@ -71,7 +71,7 @@ const Header = () => {
 
     const { url } = logo.file;
 
-    const { open: navOpen, toggleOpen } = React.useContext(MobileNavContext) || {};
+    const { open: navOpen, toggleOpen, setIsOpen } = React.useContext(MobileNavContext) || {};
 
     const isMobile = useBreakpointIndex() <= 2;
 
@@ -150,7 +150,7 @@ const Header = () => {
                         {!navOpen ? <NavIcon size="30" /> : <CloseIcon size="30" />}
                     </Box>
 
-                    <Box sx={navSx} onClick={isMobile ? toggleOpen : undefined}>
+                    <Box sx={navSx} onClick={isMobile ? () => setIsOpen?.(false) : undefined}>
                         {pages &&
                             pages.map((page) => (
                                 <Link

@@ -191,6 +191,9 @@ export function ProjectInner({
                             fontSize: 1,
                             lineHeight: "22px",
                             color: "medium",
+                            p: {
+                                mb: 5,
+                            },
                         }}
                     >
                         <RichText text={JSON.parse(description.raw)} />
