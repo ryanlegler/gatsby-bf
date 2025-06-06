@@ -225,7 +225,7 @@ const navSx: ThemeUICSSObject = {
             width: "100%"
           }}
         >
-          <Link to="/">
+          <Link to="/" style={{ width: "50%" }}>
             <Box
               sx={{
                 ...bgImageSx,
@@ -234,7 +234,7 @@ const navSx: ThemeUICSSObject = {
                 height: "21px",
                 backgroundPosition: "left -1px",
                 width: "310px",
-                backgroundImage: `url(${url})`
+                backgroundImage: `url(${url})`,
               }}
             >
               {description}

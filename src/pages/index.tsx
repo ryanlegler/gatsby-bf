@@ -66,6 +66,8 @@ const IndexPage = ({ data }) => {
       }}
     >
       <Carousel
+        slideWidth="100%"
+        cellSpacing={0}
         wrapAround
         autoplay
         // slideIndex={start}

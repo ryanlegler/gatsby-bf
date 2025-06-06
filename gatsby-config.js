@@ -1,10 +1,11 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 });
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  environment: process.env.CONTENTFUL_ENVIRONMENT || "master",
 };
 
 // if you want to use the preview API please define
@@ -27,7 +28,7 @@ module.exports = {
   siteMetadata: {
     title: `Brendon Farrell`,
     description: `Portfolio website for Architect Brendon Farrell`,
-    author: `@ryanlegler`
+    author: `@ryanlegler`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -37,8 +38,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -49,18 +50,18 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#fff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
-      }
+        icon: `src/images/fav-icon-16x16.png`, // This path is relative to the root of the site.
+      },
     },
     {
       resolve: "gatsby-source-contentful",
-      options: contentfulConfig
+      options: contentfulConfig,
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp` // Needed for dynamic images
-  ]
+    `gatsby-transformer-sharp`, // Needed for dynamic images
+  ],
 };
